@@ -318,39 +318,57 @@ def backtest(
 def status():
     """Show system status"""
     logger.info("System status check")
-    
-    # Check IBKR connection
+
     config = get_config()
-    
+
+    # helpers to tolerate different config shapes
+    def _get_url(cfg, top_key: str):
+        # tries cfg.<top_key>_url OR cfg.<top_key>.url
+        direct = getattr(cfg, f"{top_key}_url", None)
+        if direct:
+            return direct
+        nested = getattr(cfg, top_key, None)
+        return getattr(nested, "url", None) if nested else None
+
     async def check_connections():
+        # ---- Redis
         try:
-            # Test cache connection
-            cache = DataCache(config.data.redis_url)
-            await cache.connect()
-            logger.info("✓ Redis cache connection OK")
-            await cache.disconnect()
+            redis_url = _get_url(config, "redis")
+            if not redis_url:
+                logger.info("ℹ Redis not configured (no URL found)")
+            else:
+                cache = DataCache(redis_url)
+                await cache.connect()
+                logger.info("✓ Redis cache connection OK")
+                await cache.disconnect()
         except Exception as e:
             logger.error(f"✗ Redis cache connection failed: {e}")
-        
+
+        # ---- Database
         try:
-            # Test database connection
-            db = DatabaseManager(config.data.database_url)
-            await db.initialize()
-            logger.info("✓ Database connection OK")
-            await db.cleanup()
+            database_url = _get_url(config, "database")
+            if not database_url:
+                logger.info("ℹ Database not configured (no URL found)")
+            else:
+                db = DatabaseManager(database_url)
+                await db.initialize()
+                logger.info("✓ Database connection OK")
+                await db.cleanup()
         except Exception as e:
             logger.error(f"✗ Database connection failed: {e}")
-        
-        # Load and validate strategies
+
+        # ---- Strategies
         try:
-            strategy_configs = load_strategy_configs()
-            enabled_strategies = [s for s in strategy_configs if s.enabled]
-            logger.info(f"✓ Found {len(enabled_strategies)} enabled strategies")
-            for strategy in enabled_strategies:
-                logger.info(f"  - {strategy.name} (allocation: {strategy.capital_allocation:.1%})")
+            strategy_configs = load_strategy_configs()  # keep your existing loader
+            enabled = [s for s in strategy_configs if getattr(s, "enabled", True)]
+            logger.info(f"✓ Found {len(enabled)} enabled strategies")
+            for s in enabled:
+                # capital_allocation as fraction (0.5) → 50.0%
+                alloc = getattr(s, "capital_allocation", 0.0)
+                logger.info(f"  - {s.name} (allocation: {alloc:.1%})")
         except Exception as e:
             logger.error(f"✗ Strategy loading failed: {e}")
-    
+
     asyncio.run(check_connections())
 
 @app.command()
