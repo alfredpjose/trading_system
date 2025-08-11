@@ -1,0 +1,29 @@
+strategies_yaml_example = """
+strategies:
+  - name: momentum_basic
+    enabled: true
+    capital_allocation: 0.4
+    parameters:
+      lookback_period: 20
+      momentum_threshold: 0.02
+      position_size: 100
+      symbols: ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'NVDA']
+  
+  - name: mean_reversion
+    enabled: false
+    capital_allocation: 0.3
+    parameters:
+      lookback_period: 10
+      std_threshold: 2.0
+      position_size: 50
+      symbols: ['SPY', 'QQQ', 'IWM']
+  
+  - name: ml_ensemble
+    enabled: false
+    capital_allocation: 0.3
+    parameters:
+      model_path: "models/ensemble_v1.pkl"
+      confidence_threshold: 0.7
+      retrain_interval: 168  # hours
+      symbols: ['AAPL', 'MSFT', 'AMZN']
+"""

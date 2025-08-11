@@ -1,0 +1,16 @@
+
+
+# requirements.txt content:
+"""
+asyncio>=3.11.0
+aiohttp>=3.8.0
+pydantic>=2.0.0
+ibapi>=10.19.0
+redis>=4.5.0
+sqlalchemy>=2.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+loguru>=0.7.0
+typer>=0.9.0
+pyyaml>=6.0
+"""

@@ -1,0 +1,49 @@
+# trading_system/
+# ├── config/
+# │   ├── __init__.py
+# │   ├── settings.py
+# │   └── strategies.yaml
+# ├── core/
+# │   ├── __init__.py
+# │   ├── interfaces.py
+# │   ├── events.py
+# │   └── exceptions.py
+# ├── data/
+# │   ├── __init__.py
+# │   ├── providers.py
+# │   ├── cache.py
+# │   └── storage.py
+# ├── execution/
+# │   ├── __init__.py
+# │   ├── engine.py
+# │   ├── broker.py
+# │   └── risk.py
+# ├── strategies/
+# │   ├── __init__.py
+# │   ├── base.py
+# │   ├── conventional/
+# │   └── ml/
+# ├── monitoring/
+# │   ├── __init__.py
+# │   ├── metrics.py
+# │   └── alerts.py
+# ├── utils/
+# │   ├── __init__.py
+# │   ├── logging.py
+# │   └── helpers.py
+# ├── tests/
+# ├── scripts/
+# ├── requirements.txt
+# ├── setup.py
+# └── main.py
+
+"""
+Clean Trading System Architecture
+
+Key Design Principles:
+1. Event-driven architecture with async processing
+2. Clean separation of concerns through interfaces
+3. Minimal API calls through intelligent caching
+4. Robust error handling with circuit breakers
+5. Modular strategy system
+"""
