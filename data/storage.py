@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy import Column, Integer, String, Float, DateTime, Index
 from datetime import datetime
 from typing import List
+from core.interfaces import MarketData
 
 Base = declarative_base()
 

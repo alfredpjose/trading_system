@@ -1,8 +1,10 @@
 # core/events.py
 import asyncio
 from collections import defaultdict
-from typing import Set, Dict
+from typing import Set, Dict, AsyncGenerator
 from loguru import logger
+
+from .interfaces import IEventBus, Event, EventType
 
 class EventBus(IEventBus):
     """Async event bus for system communication"""

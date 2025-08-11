@@ -1,132 +1,342 @@
-# config/settings.py
-from pydantic import BaseSettings, Field, validator
-from typing import Dict, List, Optional
+"""
+Trading System Configuration Settings
+Handles loading and validation of configuration from YAML files
+"""
+
+import os
 import yaml
+from dataclasses import dataclass, field
+from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
 
-class IBKRConfig(BaseSettings):
-    """IBKR connection configuration"""
-    host: str = "127.0.0.1"
-    port: int = 7497
-    client_id: int = 1000
-    timeout: int = 30
-    
-    class Config:
-        env_prefix = "IBKR_"
 
-class RiskConfig(BaseSettings):
+@dataclass
+class RiskManagementConfig:
     """Risk management configuration"""
-    max_portfolio_risk: float = Field(0.02, ge=0.01, le=0.1)  # 2% max risk per trade
-    max_position_size: float = Field(0.1, ge=0.01, le=0.5)   # 10% max position
-    max_drawdown: float = Field(0.2, ge=0.05, le=0.5)        # 20% max drawdown
-    daily_loss_limit: float = Field(0.05, ge=0.01, le=0.2)   # 5% daily loss limit
-    max_open_positions: int = Field(10, ge=1, le=50)
+    max_daily_loss: float = 0.05
+    max_drawdown: float = 0.20
+    position_sizing_method: str = "fixed_fractional"
     
-    class Config:
-        env_prefix = "RISK_"
+    def __post_init__(self):
+        if not 0 < self.max_daily_loss < 1:
+            raise ValueError("max_daily_loss must be between 0 and 1")
+        if not 0 < self.max_drawdown < 1:
+            raise ValueError("max_drawdown must be between 0 and 1")
 
-class DataConfig(BaseSettings):
-    """Data management configuration"""
-    cache_ttl: int = Field(60, ge=1, le=3600)  # Cache TTL in seconds
-    redis_url: str = "redis://localhost:6379"
-    database_url: str = "sqlite:///trading.db"
-    max_historical_days: int = Field(252, ge=1, le=1000)
-    
-    class Config:
-        env_prefix = "DATA_"
 
-class SystemConfig(BaseSettings):
-    """Main system configuration"""
-    environment: str = Field("development", regex="^(development|staging|production)$")
-    log_level: str = Field("INFO", regex="^(DEBUG|INFO|WARNING|ERROR|CRITICAL)$")
-    enable_paper_trading: bool = True
-    max_concurrent_strategies: int = Field(5, ge=1, le=20)
-    heartbeat_interval: int = Field(30, ge=5, le=300)
+@dataclass
+class ExecutionConfig:
+    """Execution configuration"""
+    slippage_model: str = "linear"
+    commission_rate: float = 0.001
+    market_impact_factor: float = 0.0001
+    order_timeout: int = 30
     
-    # Sub-configurations
-    ibkr: IBKRConfig = IBKRConfig()
-    risk: RiskConfig = RiskConfig()
-    data: DataConfig = DataConfig()
-    
-    class Config:
-        env_file = ".env"
-        case_sensitive = False
+    def __post_init__(self):
+        if self.commission_rate < 0:
+            raise ValueError("commission_rate cannot be negative")
+        if self.order_timeout <= 0:
+            raise ValueError("order_timeout must be positive")
 
-class StrategyConfig(BaseSettings):
+
+@dataclass
+class DataRequirementsConfig:
+    """Data requirements configuration"""
+    min_history_days: int = 252
+    required_timeframes: List[str] = field(default_factory=lambda: ["1m", "5m", "1h", "1d"])
+    required_indicators: List[str] = field(default_factory=lambda: ["sma", "ema", "rsi", "bollinger", "volume"])
+    
+    def __post_init__(self):
+        if self.min_history_days <= 0:
+            raise ValueError("min_history_days must be positive")
+
+
+@dataclass
+class GlobalSettingsConfig:
+    """Global settings configuration"""
+    max_concurrent_positions: int = 5
+    portfolio_heat: float = 0.10
+    correlation_threshold: float = 0.7
+    risk_management: RiskManagementConfig = field(default_factory=RiskManagementConfig)
+    execution: ExecutionConfig = field(default_factory=ExecutionConfig)
+    data_requirements: DataRequirementsConfig = field(default_factory=DataRequirementsConfig)
+    
+    def __post_init__(self):
+        if self.max_concurrent_positions <= 0:
+            raise ValueError("max_concurrent_positions must be positive")
+        if not 0 < self.portfolio_heat < 1:
+            raise ValueError("portfolio_heat must be between 0 and 1")
+
+
+@dataclass
+class StrategyConfig:
     """Individual strategy configuration"""
-    name: str
-    enabled: bool = True
-    capital_allocation: float = Field(0.1, ge=0.01, le=1.0)
-    parameters: Dict = {}
+    enabled: bool = False
+    type: str = "conventional"
+    description: str = ""
+    parameters: Dict[str, Any] = field(default_factory=dict)
     
-    @validator('capital_allocation')
-    def validate_allocation(cls, v):
-        if not 0.01 <= v <= 1.0:
-            raise ValueError('Capital allocation must be between 1% and 100%')
-        return v
-
-def load_strategy_configs(config_path: str = "config/strategies.yaml") -> List[StrategyConfig]:
-    """Load strategy configurations from YAML file"""
-    config_file = Path(config_path)
-    
-    if not config_file.exists():
-        # Create default config
-        default_config = {
-            'strategies': [
-                {
-                    'name': 'momentum_basic',
-                    'enabled': True,
-                    'capital_allocation': 0.3,
-                    'parameters': {
-                        'lookback_period': 20,
-                        'momentum_threshold': 0.02,
-                        'position_size': 100
-                    }
-                },
-                {
-                    'name': 'mean_reversion',
-                    'enabled': False,
-                    'capital_allocation': 0.2,
-                    'parameters': {
-                        'lookback_period': 10,
-                        'std_threshold': 2.0,
-                        'position_size': 50
-                    }
-                }
-            ]
-        }
+    def __post_init__(self):
+        if self.type not in ["conventional", "ml"]:
+            raise ValueError("Strategy type must be 'conventional' or 'ml'")
         
-        config_file.parent.mkdir(exist_ok=True)
-        with open(config_file, 'w') as f:
-            yaml.dump(default_config, f, default_flow_style=False)
+        # Validate common parameters
+        if "risk_per_trade" in self.parameters:
+            risk = self.parameters["risk_per_trade"]
+            if not isinstance(risk, (int, float)) or not 0 < risk < 1:
+                raise ValueError("risk_per_trade must be between 0 and 1")
     
-    with open(config_file, 'r') as f:
-        config_data = yaml.safe_load(f)
-    
-    return [StrategyConfig(**strategy) for strategy in config_data.get('strategies', [])]
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'StrategyConfig':
+        """Create StrategyConfig from dictionary"""
+        if not isinstance(data, dict):
+            raise TypeError(f"Expected dict, got {type(data)}")
+        
+        return cls(
+            enabled=data.get("enabled", False),
+            type=data.get("type", "conventional"),
+            description=data.get("description", ""),
+            parameters=data.get("parameters", {})
+        )
 
-def validate_system_config(config: SystemConfig) -> bool:
-    """Validate system configuration for common issues"""
-    errors = []
+
+@dataclass
+class TradingHoursConfig:
+    """Trading hours configuration"""
+    start: str = "09:30"
+    end: str = "16:00"
+    timezone: str = "US/Eastern"
+
+
+@dataclass
+class AssetClassConfig:
+    """Asset class configuration"""
+    trading_hours: TradingHoursConfig = field(default_factory=TradingHoursConfig)
+    min_price: Optional[float] = None
+    max_price: Optional[float] = None
+    min_volume: Optional[int] = None
+    major_pairs: Optional[List[str]] = None
+    min_market_cap: Optional[float] = None
+    exchanges: Optional[List[str]] = None
     
-    # Check IBKR port ranges
-    if config.ibkr.port not in [7496, 7497, 4001, 4002]:
-        errors.append(f"Unusual IBKR port {config.ibkr.port}. Common ports: 7496, 7497, 4001, 4002")
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'AssetClassConfig':
+        """Create AssetClassConfig from dictionary"""
+        if not isinstance(data, dict):
+            raise TypeError(f"Expected dict, got {type(data)}")
+        
+        trading_hours_data = data.get("trading_hours", {})
+        trading_hours = TradingHoursConfig(
+            start=trading_hours_data.get("start", "09:30"),
+            end=trading_hours_data.get("end", "16:00"),
+            timezone=trading_hours_data.get("timezone", "US/Eastern")
+        )
+        
+        return cls(
+            trading_hours=trading_hours,
+            min_price=data.get("min_price"),
+            max_price=data.get("max_price"),
+            min_volume=data.get("min_volume"),
+            major_pairs=data.get("major_pairs"),
+            min_market_cap=data.get("min_market_cap"),
+            exchanges=data.get("exchanges")
+        )
+
+
+@dataclass
+class BacktestingConfig:
+    """Backtesting configuration"""
+    default_start_date: str = "2020-01-01"
+    default_end_date: str = "2024-12-31"
+    initial_capital: float = 100000
+    benchmark: str = "SPY"
+    metrics: List[str] = field(default_factory=lambda: [
+        "total_return", "sharpe_ratio", "max_drawdown", 
+        "win_rate", "profit_factor", "calmar_ratio"
+    ])
     
-    # Check risk parameters
-    if config.risk.max_portfolio_risk > 0.05:
-        errors.append("High portfolio risk setting (>5%) detected")
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'BacktestingConfig':
+        """Create BacktestingConfig from dictionary"""
+        if not isinstance(data, dict):
+            raise TypeError(f"Expected dict, got {type(data)}")
+        
+        return cls(
+            default_start_date=data.get("default_start_date", "2020-01-01"),
+            default_end_date=data.get("default_end_date", "2024-12-31"),
+            initial_capital=data.get("initial_capital", 100000),
+            benchmark=data.get("benchmark", "SPY"),
+            metrics=data.get("metrics", [
+                "total_return", "sharpe_ratio", "max_drawdown",
+                "win_rate", "profit_factor", "calmar_ratio"
+            ])
+        )
+
+
+@dataclass
+class TradingSystemConfig:
+    """Main trading system configuration"""
+    strategies: Dict[str, StrategyConfig] = field(default_factory=dict)
+    global_settings: GlobalSettingsConfig = field(default_factory=GlobalSettingsConfig)
+    asset_classes: Dict[str, AssetClassConfig] = field(default_factory=dict)
+    backtesting: BacktestingConfig = field(default_factory=BacktestingConfig)
     
-    # Check production settings
-    if config.environment == "production":
-        if config.enable_paper_trading:
-            errors.append("Paper trading enabled in production environment")
-        if config.log_level == "DEBUG":
-            errors.append("Debug logging in production environment")
+    @classmethod
+    def load_from_yaml(cls, yaml_path: Union[str, Path]) -> 'TradingSystemConfig':
+        """Load configuration from YAML file"""
+        yaml_path = Path(yaml_path)
+        
+        if not yaml_path.exists():
+            raise FileNotFoundError(f"Configuration file not found: {yaml_path}")
+        
+        try:
+            with open(yaml_path, 'r', encoding='utf-8') as f:
+                data = yaml.safe_load(f)
+        except yaml.YAMLError as e:
+            raise ValueError(f"Invalid YAML syntax in {yaml_path}: {e}")
+        
+        if not isinstance(data, dict):
+            raise ValueError("YAML file must contain a dictionary at root level")
+        
+        return cls.from_dict(data)
     
-    if errors:
-        for error in errors:
-            print(f"WARNING: {error}")
-        return False
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'TradingSystemConfig':
+        """Create TradingSystemConfig from dictionary"""
+        if not isinstance(data, dict):
+            raise TypeError(f"Expected dict, got {type(data)}")
+        
+        # Parse strategies
+        strategies = {}
+        strategies_data = data.get("strategies", {})
+        if isinstance(strategies_data, dict):
+            for name, strategy_data in strategies_data.items():
+                if isinstance(strategy_data, dict):
+                    strategies[name] = StrategyConfig.from_dict(strategy_data)
+                else:
+                    raise ValueError(f"Strategy '{name}' configuration must be a dictionary")
+        
+        # Parse global settings
+        global_settings_data = data.get("global_settings", {})
+        global_settings = cls._parse_global_settings(global_settings_data)
+        
+        # Parse asset classes
+        asset_classes = {}
+        asset_classes_data = data.get("asset_classes", {})
+        if isinstance(asset_classes_data, dict):
+            for name, asset_data in asset_classes_data.items():
+                if isinstance(asset_data, dict):
+                    asset_classes[name] = AssetClassConfig.from_dict(asset_data)
+        
+        # Parse backtesting
+        backtesting_data = data.get("backtesting", {})
+        backtesting = BacktestingConfig.from_dict(backtesting_data) if backtesting_data else BacktestingConfig()
+        
+        return cls(
+            strategies=strategies,
+            global_settings=global_settings,
+            asset_classes=asset_classes,
+            backtesting=backtesting
+        )
     
-    return True
+    @staticmethod
+    def _parse_global_settings(data: Dict[str, Any]) -> GlobalSettingsConfig:
+        """Parse global settings from dictionary"""
+        if not isinstance(data, dict):
+            return GlobalSettingsConfig()
+        
+        # Parse risk management
+        risk_mgmt_data = data.get("risk_management", {})
+        risk_management = RiskManagementConfig()
+        if isinstance(risk_mgmt_data, dict):
+            risk_management = RiskManagementConfig(
+                max_daily_loss=risk_mgmt_data.get("max_daily_loss", 0.05),
+                max_drawdown=risk_mgmt_data.get("max_drawdown", 0.20),
+                position_sizing_method=risk_mgmt_data.get("position_sizing_method", "fixed_fractional")
+            )
+        
+        # Parse execution
+        execution_data = data.get("execution", {})
+        execution = ExecutionConfig()
+        if isinstance(execution_data, dict):
+            execution = ExecutionConfig(
+                slippage_model=execution_data.get("slippage_model", "linear"),
+                commission_rate=execution_data.get("commission_rate", 0.001),
+                market_impact_factor=execution_data.get("market_impact_factor", 0.0001),
+                order_timeout=execution_data.get("order_timeout", 30)
+            )
+        
+        # Parse data requirements
+        data_req_data = data.get("data_requirements", {})
+        data_requirements = DataRequirementsConfig()
+        if isinstance(data_req_data, dict):
+            data_requirements = DataRequirementsConfig(
+                min_history_days=data_req_data.get("min_history_days", 252),
+                required_timeframes=data_req_data.get("required_timeframes", ["1m", "5m", "1h", "1d"]),
+                required_indicators=data_req_data.get("required_indicators", ["sma", "ema", "rsi", "bollinger", "volume"])
+            )
+        
+        return GlobalSettingsConfig(
+            max_concurrent_positions=data.get("max_concurrent_positions", 5),
+            portfolio_heat=data.get("portfolio_heat", 0.10),
+            correlation_threshold=data.get("correlation_threshold", 0.7),
+            risk_management=risk_management,
+            execution=execution,
+            data_requirements=data_requirements
+        )
+    
+    def validate(self) -> List[str]:
+        """Validate configuration and return list of errors"""
+        errors = []
+        
+        # Validate strategies
+        if not self.strategies:
+            errors.append("No strategies configured")
+        
+        enabled_strategies = [name for name, config in self.strategies.items() if config.enabled]
+        if not enabled_strategies:
+            errors.append("No strategies are enabled")
+        
+        # Validate global settings
+        if self.global_settings.max_concurrent_positions <= 0:
+            errors.append("max_concurrent_positions must be positive")
+        
+        if not 0 < self.global_settings.portfolio_heat < 1:
+            errors.append("portfolio_heat must be between 0 and 1")
+        
+        return errors
+    
+    def get_enabled_strategies(self) -> Dict[str, StrategyConfig]:
+        """Get only enabled strategies"""
+        return {name: config for name, config in self.strategies.items() if config.enabled}
+
+
+# Default configuration paths
+CONFIG_DIR = Path(__file__).parent
+STRATEGIES_CONFIG_PATH = CONFIG_DIR / "strategies.yaml"
+
+# Global config instance
+_config: Optional[TradingSystemConfig] = None
+
+
+def get_config() -> TradingSystemConfig:
+    """Get the global configuration instance"""
+    global _config
+    if _config is None:
+        _config = load_config()
+    return _config
+
+
+def load_config(config_path: Optional[Union[str, Path]] = None) -> TradingSystemConfig:
+    """Load configuration from file"""
+    if config_path is None:
+        config_path = STRATEGIES_CONFIG_PATH
+    
+    return TradingSystemConfig.load_from_yaml(config_path)
+
+
+def reload_config() -> TradingSystemConfig:
+    """Reload configuration from file"""
+    global _config
+    _config = load_config()
+    return _config

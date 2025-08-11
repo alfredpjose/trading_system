@@ -1,0 +1,9 @@
+2025-08-11 23:16:04 | INFO     | __main__:364 - ✓ Configuration validation passed
+2025-08-11 23:16:04 | ERROR    | __main__:382 - Configuration validation failed: mapping values are not allowed here
+  in "config\strategies.yaml", line 2, column 11
+2025-08-11 23:17:30 | INFO     | __main__:364 - ✓ Configuration validation passed
+2025-08-11 23:17:30 | ERROR    | __main__:382 - Configuration validation failed: config.settings.StrategyConfig() argument after ** must be a mapping, not str
+2025-08-11 23:29:17 | ERROR    | __main__:383 - Configuration validation failed: name 'get_config' is not defined
+2025-08-11 23:30:56 | INFO     | __main__:365 - ✓ Configuration validation passed
+2025-08-11 23:30:56 | INFO     | __main__:378 - ✓ Strategy allocation OK: 100.0%
+2025-08-11 23:30:56 | INFO     | __main__:380 - Configuration validation complete

@@ -1,29 +1,141 @@
-strategies_yaml_example = """
+# Trading System Strategies Configuration
+# Defines available trading strategies and their parameters
+
 strategies:
-  - name: momentum_basic
+  # Moving Average Crossover Strategy
+  ma_crossover:
     enabled: true
-    capital_allocation: 0.4
+    type: "conventional"
+    description: "Simple moving average crossover strategy"
     parameters:
-      lookback_period: 20
-      momentum_threshold: 0.02
-      position_size: 100
-      symbols: ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'NVDA']
-  
-  - name: mean_reversion
+      fast_period: 10
+      slow_period: 30
+      asset_classes: ["stocks", "forex", "crypto"]
+      risk_per_trade: 0.02
+      stop_loss_pct: 0.05
+      take_profit_pct: 0.10
+    
+  # RSI Mean Reversion Strategy
+  rsi_mean_reversion:
     enabled: false
-    capital_allocation: 0.3
+    type: "conventional" 
+    description: "RSI-based mean reversion strategy"
     parameters:
-      lookback_period: 10
-      std_threshold: 2.0
-      position_size: 50
-      symbols: ['SPY', 'QQQ', 'IWM']
-  
-  - name: ml_ensemble
+      rsi_period: 14
+      oversold_threshold: 30
+      overbought_threshold: 70
+      asset_classes: ["stocks"]
+      risk_per_trade: 0.015
+      stop_loss_pct: 0.03
+      take_profit_pct: 0.06
+
+  # Bollinger Bands Strategy
+  bollinger_bands:
+    enabled: true
+    type: "conventional"
+    description: "Bollinger Bands breakout/reversion strategy"
+    parameters:
+      period: 20
+      std_dev: 2
+      mode: "breakout"  # or "reversion"
+      asset_classes: ["stocks", "forex"]
+      risk_per_trade: 0.02
+      stop_loss_pct: 0.04
+      take_profit_pct: 0.08
+
+  # Machine Learning LSTM Strategy
+  lstm_prediction:
     enabled: false
-    capital_allocation: 0.3
+    type: "ml"
+    description: "LSTM neural network price prediction"
     parameters:
-      model_path: "models/ensemble_v1.pkl"
+      lookback_window: 60
+      prediction_horizon: 5
+      retrain_frequency: 168  # hours
       confidence_threshold: 0.7
-      retrain_interval: 168  # hours
-      symbols: ['AAPL', 'MSFT', 'AMZN']
-"""
+      asset_classes: ["crypto", "forex"]
+      risk_per_trade: 0.025
+      stop_loss_pct: 0.06
+      take_profit_pct: 0.12
+
+  # Random Forest Classification Strategy  
+  rf_classification:
+    enabled: false
+    type: "ml"
+    description: "Random forest for trend classification"
+    parameters:
+      n_estimators: 100
+      max_depth: 10
+      feature_window: 30
+      retrain_frequency: 24  # hours
+      asset_classes: ["stocks"]
+      risk_per_trade: 0.02
+      stop_loss_pct: 0.05
+      take_profit_pct: 0.10
+
+# Global Strategy Settings
+global_settings:
+  max_concurrent_positions: 5
+  portfolio_heat: 0.10  # Maximum total risk exposure
+  correlation_threshold: 0.7  # Avoid correlated positions
+  
+  # Risk Management
+  risk_management:
+    max_daily_loss: 0.05
+    max_drawdown: 0.20
+    position_sizing_method: "fixed_fractional"  # or "kelly", "volatility_adjusted"
+    
+  # Execution Settings
+  execution:
+    slippage_model: "linear"
+    commission_rate: 0.001
+    market_impact_factor: 0.0001
+    order_timeout: 30  # seconds
+    
+  # Data Requirements
+  data_requirements:
+    min_history_days: 252  # 1 year
+    required_timeframes: ["1m", "5m", "1h", "1d"]
+    required_indicators: ["sma", "ema", "rsi", "bollinger", "volume"]
+
+# Asset Class Configurations
+asset_classes:
+  stocks:
+    trading_hours:
+      start: "09:30"
+      end: "16:00" 
+      timezone: "US/Eastern"
+    min_price: 5.0
+    max_price: 1000.0
+    min_volume: 100000
+    
+  forex:
+    trading_hours:
+      start: "17:00"
+      end: "17:00"  # 24/7 with Sunday gap
+      timezone: "US/Eastern"
+    major_pairs: ["EUR/USD", "GBP/USD", "USD/JPY", "USD/CHF"]
+    
+  crypto:
+    trading_hours:
+      start: "00:00"
+      end: "23:59"  # 24/7
+      timezone: "UTC"
+    min_market_cap: 1000000000  # 1B USD
+    exchanges: ["binance", "coinbase", "kraken"]
+
+# Backtesting Settings
+backtesting:
+  default_start_date: "2020-01-01"
+  default_end_date: "2024-12-31"
+  initial_capital: 100000
+  benchmark: "SPY"  # S&P 500 ETF
+  
+  # Performance Metrics
+  metrics:
+    - "total_return"
+    - "sharpe_ratio" 
+    - "max_drawdown"
+    - "win_rate"
+    - "profit_factor"
+    - "calmar_ratio"
