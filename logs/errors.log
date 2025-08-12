@@ -2,3 +2,10 @@
   in "config\strategies.yaml", line 2, column 11
 2025-08-11 23:17:30 | ERROR    | __main__:382 - Configuration validation failed: config.settings.StrategyConfig() argument after ** must be a mapping, not str
 2025-08-11 23:29:17 | ERROR    | __main__:383 - Configuration validation failed: name 'get_config' is not defined
+2025-08-12 11:29:32 | ERROR    | monitoring.metrics:68 - Error collecting metrics: No module named 'psutil'
+2025-08-12 11:29:32 | ERROR    | __main__:369 - System error: name 'logger' is not defined
+2025-08-12 11:29:45 | ERROR    | monitoring.metrics:68 - Error collecting metrics: No module named 'psutil'
+2025-08-12 11:30:15 | ERROR    | monitoring.metrics:68 - Error collecting metrics: No module named 'psutil'
+2025-08-12 11:30:45 | ERROR    | monitoring.metrics:68 - Error collecting metrics: No module named 'psutil'
+2025-08-12 15:16:34 | ERROR    | execution.broker:51 - Broker connection failed: Failed to establish broker connection
+2025-08-12 15:16:34 | ERROR    | __main__:369 - System error: Broker connection failed: Failed to establish broker connection

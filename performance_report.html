@@ -1,0 +1,70 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Trading Performance Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            .header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+            .summary { display: flex; justify-content: space-around; margin: 20px 0; }
+            .metric { text-align: center; padding: 15px; background: #ecf0f1; border-radius: 5px; }
+            .metric h3 { margin: 0; color: #2c3e50; }
+            .metric p { margin: 5px 0; font-size: 24px; font-weight: bold; }
+            .positive { color: #27ae60; }
+            .negative { color: #e74c3c; }
+            table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>📊 Trading Performance Report</h1>
+            <p>Period: 2024-01-01 to 2025-08-12</p>
+        </div>
+        
+        <div class="summary">
+            <div class="metric">
+                <h3>Total P&L</h3>
+                <p class="positive">
+                    $2,847.50
+                </p>
+            </div>
+            <div class="metric">
+                <h3>Total Trades</h3>
+                <p>45</p>
+            </div>
+            <div class="metric">
+                <h3>Win Rate</h3>
+                <p>64.0%</p>
+            </div>
+            <div class="metric">
+                <h3>Sharpe Ratio</h3>
+                <p>1.42</p>
+            </div>
+        </div>
+        
+        <h2>📈 Strategy Breakdown</h2>
+        <table>
+            <tr><th>Strategy</th><th>Trades</th><th>P&L</th><th>Win Rate</th></tr>
+    
+            <tr>
+                <td>ma_crossover</td>
+                <td>25</td>
+                <td class="positive">$1,548.20</td>
+                <td>68.0%</td>
+            </tr>
+        
+            <tr>
+                <td>bollinger_bands</td>
+                <td>20</td>
+                <td class="positive">$1,299.30</td>
+                <td>60.0%</td>
+            </tr>
+        
+        </table>
+        
+        <p><small>Report generated on 2025-08-12 15:56:50</small></p>
+    </body>
+    </html>
+    

@@ -47,3 +47,91 @@ Key Design Principles:
 4. Robust error handling with circuit breakers
 5. Modular strategy system
 """
+1. 📊 List Available Stocks
+bash# Basic stock screening
+py main.py list-stocks
+
+# Advanced filtering
+py main.py list-stocks --exchange NASDAQ --min-price 10 --max-price 500 --min-volume 500000 --output-file stocks.csv
+
+# Filter by market cap and sector
+py main.py list-stocks --min-market-cap 5000000000 --sector Technology
+2. 🔬 Backtest Strategies
+bash# Basic backtesting
+py main.py backtest-strategy --strategy ma_crossover --symbols "AAPL,MSFT,GOOGL"
+
+# Advanced backtesting with custom parameters
+py main.py backtest-strategy --strategy bollinger_bands --symbols "TSLA,NVDA" --start-date "2023-01-01" --trading-hours "09:30-16:00" --output-file backtest_results.csv
+3. 🎯 Advanced Threshold Analysis (Monte Carlo + Risk)
+bash# Comprehensive analysis for one stock
+py main.py analyze-threshold --symbol AAPL --monte-carlo-sims 2000 --output-file aapl_analysis.json
+
+# Quick analysis
+py main.py analyze-threshold --symbol TSLA --lookback-days 100
+4. 🚀 Strategy Optimization Suite
+bash# Optimize strategies for multiple stocks
+py main.py optimize-strategies --symbols "AAPL,MSFT,GOOGL" --min-composite-score 0.6
+
+# Save to your main configuration
+py main.py optimize-strategies --symbols "AAPL,TSLA" --save-to-main-config
+
+# Custom trading hours
+py main.py optimize-strategies --symbols "NVDA" --trading-hours "10:00-15:30"
+
+5. ⏰ Market Hours Analysis
+bash# Analyze optimal trading hours
+py main.py market-hours-analysis --symbols "AAPL,MSFT" --hours-config "09:30-11:00,11:00-14:00,14:00-16:00"
+
+# View market hours for all IBKR asset classes
+py main.py ibkr-market-hours
+
+6. 📊 Real-time Dashboard
+bash# Launch monitoring dashboard
+py main.py dashboard --refresh-seconds 3
+
+# Simplified dashboard
+py main.py dashboard --show-positions --refresh-seconds 10
+7. 🚨 Alerts and Monitoring
+bash# View recent alerts
+py main.py alerts --level WARNING --last-hours 12
+
+# Check IBKR connection and capabilities
+py main.py ibkr-status
+
+# Export alerts
+py main.py alerts --export-file alerts.csv
+10. 📈 Performance Reports
+bash# Generate comprehensive report
+py main.py performance-report --start-date "2024-01-01" --include-charts
+
+# Custom report
+py main.py performance-report --strategies "ma_crossover,bollinger_bands" --output-file custom_report.html
+What Each Analysis Provides:
+🎯 Threshold Analysis Features:
+
+Monte Carlo Simulation - Risk assessment with 1000+ simulations
+Edge Ratio - Expectation vs risk calculation
+Risk Management Score - VaR, skewness, kurtosis analysis
+Volatility Factor - Normalized volatility assessment
+Liquidity Factor - Volume and turnover analysis
+Correlation Factor - Market correlation analysis
+Market Regime Factor - Trending vs ranging market detection
+Fuzzy Logic Composite - AI-weighted final score
+Strategy Recommendations - Optimized parameters for each symbol
+
+🚀 Strategy Optimization:
+
+Automatically generates optimized strategy configurations
+Saves to YAML format compatible with your system
+Multi-platform support (IBKR, Alpaca, TD Ameritrade)
+Custom trading hours and risk parameters
+Composite scoring with multiple factors
+
+📊 Dashboard Features:
+
+Real-time system status monitoring
+Live position tracking with P&L
+Strategy performance metrics
+Risk management alerts
+Market data connection status
+Automatic data export

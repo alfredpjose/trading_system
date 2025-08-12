@@ -7,3 +7,1359 @@
 2025-08-11 23:30:56 | INFO     | __main__:365 - ✓ Configuration validation passed
 2025-08-11 23:30:56 | INFO     | __main__:378 - ✓ Strategy allocation OK: 100.0%
 2025-08-11 23:30:56 | INFO     | __main__:380 - Configuration validation complete
+2025-08-12 00:01:07 | INFO     | __main__:383 - ✓ Configuration validation passed
+2025-08-12 00:01:07 | INFO     | __main__:396 - ✓ Strategy allocation OK: 100.0%
+2025-08-12 00:01:07 | INFO     | __main__:398 - Configuration validation complete
+2025-08-12 09:39:49 | INFO     | __main__:53 - Redis not available, running without cache
+2025-08-12 11:20:55 | INFO     | __main__:53 - Redis not available, running without cache
+2025-08-12 11:22:23 | INFO     | __main__:53 - Redis not available, running without cache
+2025-08-12 11:26:56 | INFO     | __main__:53 - Redis not available, running without cache
+2025-08-12 11:29:32 | INFO     | __main__:53 - Redis not available, running without cache
+2025-08-12 11:29:32 | INFO     | __main__:94 - Initializing trading system...
+2025-08-12 11:29:32 | INFO     | monitoring.metrics:47 - Metrics collection started
+2025-08-12 11:29:32 | ERROR    | monitoring.metrics:68 - Error collecting metrics: No module named 'psutil'
+2025-08-12 11:29:32 | ERROR    | __main__:369 - System error: name 'logger' is not defined
+2025-08-12 11:29:32 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 11:29:32 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 11:29:32 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 11:29:32 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 11:29:45 | INFO     | __main__:53 - Redis not available, running without cache
+2025-08-12 11:29:45 | INFO     | __main__:94 - Initializing trading system...
+2025-08-12 11:29:45 | INFO     | monitoring.metrics:47 - Metrics collection started
+2025-08-12 11:29:45 | ERROR    | monitoring.metrics:68 - Error collecting metrics: No module named 'psutil'
+2025-08-12 11:29:45 | INFO     | data.storage:59 - Database initialized successfully
+2025-08-12 11:29:45 | INFO     | core.events:47 - Event bus started
+2025-08-12 11:29:45 | INFO     | strategies.base:38 - Strategy ma_crossover initialized with config: {'fast_period': 10, 'slow_period': 30, 'asset_classes': ['stocks', 'forex', 'crypto'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.05, 'take_profit_pct': 0.1}
+2025-08-12 11:29:45 | INFO     | __main__:193 - Loaded strategy: ma_crossover
+2025-08-12 11:29:45 | INFO     | strategies.base:38 - Strategy bollinger_bands initialized with config: {'period': 20, 'std_dev': 2, 'mode': 'breakout', 'asset_classes': ['stocks', 'forex'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.04, 'take_profit_pct': 0.08}
+2025-08-12 11:29:45 | INFO     | __main__:193 - Loaded strategy: bollinger_bands
+2025-08-12 11:29:45 | INFO     | __main__:115 - Trading system initialized successfully
+2025-08-12 11:29:45 | INFO     | __main__:201 - Starting trading system...
+2025-08-12 11:29:45 | DEBUG    | execution.broker:69 - Next valid order ID: 1
+2025-08-12 11:29:45 | DEBUG    | execution.broker:96 - IBKR Info 2104: Market data farm connection is OK:usfarm
+2025-08-12 11:29:45 | WARNING  | execution.broker:98 - IBKR Error 2107: HMDS data farm connection is inactive but should be available upon demand.ushmds
+2025-08-12 11:29:45 | DEBUG    | execution.broker:96 - IBKR Info 2158: Sec-def data farm connection is OK:secdefil
+2025-08-12 11:29:47 | INFO     | execution.broker:45 - Connected to IBKR broker at 127.0.0.1:7497
+2025-08-12 11:29:47 | INFO     | execution.engine:35 - Execution engine started
+2025-08-12 11:29:47 | INFO     | __main__:227 - Subscribing to market data for: ['MSFT', 'NVDA', 'AAPL', 'GOOGL', 'TSLA']
+2025-08-12 11:29:47 | INFO     | __main__:214 - Trading system started successfully
+2025-08-12 11:29:47 | DEBUG    | data.providers:74 - IBKR connection acknowledged
+2025-08-12 11:29:47 | DEBUG    | data.providers:79 - IBKR Info 2104: Market data farm connection is OK:usfarm
+2025-08-12 11:29:47 | WARNING  | data.providers:81 - IBKR Error 2107: HMDS data farm connection is inactive but should be available upon demand.ushmds
+2025-08-12 11:29:47 | DEBUG    | data.providers:79 - IBKR Info 2158: Sec-def data farm connection is OK:secdefil
+2025-08-12 11:29:49 | INFO     | data.providers:54 - Connected to IBKR at 127.0.0.1:7497
+2025-08-12 11:29:49 | INFO     | data.providers:129 - Subscribed to MSFT (req_id: 1000)
+2025-08-12 11:29:49 | INFO     | data.providers:129 - Subscribed to NVDA (req_id: 1001)
+2025-08-12 11:29:49 | INFO     | data.providers:129 - Subscribed to AAPL (req_id: 1002)
+2025-08-12 11:29:49 | INFO     | data.providers:129 - Subscribed to GOOGL (req_id: 1003)
+2025-08-12 11:29:49 | INFO     | data.providers:129 - Subscribed to TSLA (req_id: 1004)
+2025-08-12 11:29:49 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.MSFT NASDAQ.NMS/TOP/ALL
+2025-08-12 11:29:49 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.NVDA NASDAQ.NMS/TOP/ALL
+2025-08-12 11:29:50 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.AAPL NASDAQ.NMS/TOP/ALL
+2025-08-12 11:29:50 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.GOOGL NASDAQ.NMS/TOP/ALL
+2025-08-12 11:29:50 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.TSLA NASDAQ.NMS/TOP/ALL
+2025-08-12 11:30:15 | ERROR    | monitoring.metrics:68 - Error collecting metrics: No module named 'psutil'
+2025-08-12 11:30:45 | ERROR    | monitoring.metrics:68 - Error collecting metrics: No module named 'psutil'
+2025-08-12 11:30:53 | INFO     | __main__:349 - Received shutdown signal
+2025-08-12 11:30:53 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 11:30:53 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 11:30:53 | INFO     | data.providers:164 - Disconnected from IBKR
+2025-08-12 11:30:53 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 11:30:53 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 11:30:53 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 11:30:53 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 11:30:53 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 11:30:53 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 11:30:53 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 11:30:53 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 11:30:53 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 11:30:53 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 11:30:53 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 11:30:53 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 11:30:53 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 11:30:53 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 11:32:09 | INFO     | __main__:53 - Redis not available, running without cache
+2025-08-12 11:32:09 | INFO     | __main__:94 - Initializing trading system...
+2025-08-12 11:32:09 | INFO     | monitoring.metrics:47 - Metrics collection started
+2025-08-12 11:32:09 | INFO     | data.storage:59 - Database initialized successfully
+2025-08-12 11:32:09 | INFO     | core.events:47 - Event bus started
+2025-08-12 11:32:09 | INFO     | strategies.base:38 - Strategy ma_crossover initialized with config: {'fast_period': 10, 'slow_period': 30, 'asset_classes': ['stocks', 'forex', 'crypto'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.05, 'take_profit_pct': 0.1}
+2025-08-12 11:32:09 | INFO     | __main__:193 - Loaded strategy: ma_crossover
+2025-08-12 11:32:09 | INFO     | strategies.base:38 - Strategy bollinger_bands initialized with config: {'period': 20, 'std_dev': 2, 'mode': 'breakout', 'asset_classes': ['stocks', 'forex'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.04, 'take_profit_pct': 0.08}
+2025-08-12 11:32:09 | INFO     | __main__:193 - Loaded strategy: bollinger_bands
+2025-08-12 11:32:09 | INFO     | __main__:115 - Trading system initialized successfully
+2025-08-12 11:32:09 | INFO     | __main__:201 - Starting trading system...
+2025-08-12 11:32:09 | DEBUG    | execution.broker:69 - Next valid order ID: 1
+2025-08-12 11:32:09 | DEBUG    | execution.broker:96 - IBKR Info 2104: Market data farm connection is OK:usfarm
+2025-08-12 11:32:09 | WARNING  | execution.broker:98 - IBKR Error 2107: HMDS data farm connection is inactive but should be available upon demand.ushmds
+2025-08-12 11:32:09 | DEBUG    | execution.broker:96 - IBKR Info 2158: Sec-def data farm connection is OK:secdefil
+2025-08-12 11:32:11 | INFO     | execution.broker:45 - Connected to IBKR broker at 127.0.0.1:7497
+2025-08-12 11:32:11 | INFO     | execution.engine:35 - Execution engine started
+2025-08-12 11:32:11 | INFO     | __main__:227 - Subscribing to market data for: ['NVDA', 'MSFT', 'TSLA', 'AAPL', 'GOOGL']
+2025-08-12 11:32:11 | INFO     | __main__:214 - Trading system started successfully
+2025-08-12 11:32:11 | DEBUG    | data.providers:74 - IBKR connection acknowledged
+2025-08-12 11:32:11 | DEBUG    | data.providers:79 - IBKR Info 2104: Market data farm connection is OK:usfarm
+2025-08-12 11:32:11 | WARNING  | data.providers:81 - IBKR Error 2107: HMDS data farm connection is inactive but should be available upon demand.ushmds
+2025-08-12 11:32:11 | DEBUG    | data.providers:79 - IBKR Info 2158: Sec-def data farm connection is OK:secdefil
+2025-08-12 11:32:13 | INFO     | data.providers:54 - Connected to IBKR at 127.0.0.1:7497
+2025-08-12 11:32:13 | INFO     | data.providers:129 - Subscribed to NVDA (req_id: 1000)
+2025-08-12 11:32:13 | INFO     | data.providers:129 - Subscribed to MSFT (req_id: 1001)
+2025-08-12 11:32:13 | INFO     | data.providers:129 - Subscribed to TSLA (req_id: 1002)
+2025-08-12 11:32:13 | INFO     | data.providers:129 - Subscribed to AAPL (req_id: 1003)
+2025-08-12 11:32:13 | INFO     | data.providers:129 - Subscribed to GOOGL (req_id: 1004)
+2025-08-12 11:32:13 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.NVDA NASDAQ.NMS/TOP/ALL
+2025-08-12 11:32:13 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.MSFT NASDAQ.NMS/TOP/ALL
+2025-08-12 11:32:13 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.TSLA NASDAQ.NMS/TOP/ALL
+2025-08-12 11:32:14 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.AAPL NASDAQ.NMS/TOP/ALL
+2025-08-12 11:32:14 | WARNING  | data.providers:81 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.GOOGL NASDAQ.NMS/TOP/ALL
+2025-08-12 11:38:12 | INFO     | __main__:459 - ✓ Configuration validation passed
+2025-08-12 11:38:12 | INFO     | __main__:472 - ✓ Strategy allocation OK: 100.0%
+2025-08-12 11:38:12 | INFO     | __main__:474 - Configuration validation complete
+2025-08-12 15:07:04 | INFO     | __main__:459 - ✓ Configuration validation passed
+2025-08-12 15:07:04 | INFO     | __main__:472 - ✓ Strategy allocation OK: 100.0%
+2025-08-12 15:07:04 | INFO     | __main__:474 - Configuration validation complete
+2025-08-12 15:15:44 | INFO     | __main__:349 - Received shutdown signal
+2025-08-12 15:15:44 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 15:15:44 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 15:15:44 | INFO     | data.providers:164 - Disconnected from IBKR
+2025-08-12 15:15:44 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 15:15:44 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 15:15:44 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 15:15:44 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 15:15:44 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 15:15:44 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 15:15:44 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 15:15:44 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 15:15:44 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 15:15:44 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 15:15:44 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 15:15:44 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 15:15:44 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 15:15:44 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 15:16:29 | INFO     | __main__:53 - Redis not available, running without cache
+2025-08-12 15:16:29 | INFO     | __main__:94 - Initializing trading system...
+2025-08-12 15:16:29 | INFO     | monitoring.metrics:47 - Metrics collection started
+2025-08-12 15:16:29 | INFO     | data.storage:59 - Database initialized successfully
+2025-08-12 15:16:29 | INFO     | core.events:47 - Event bus started
+2025-08-12 15:16:29 | INFO     | strategies.base:38 - Strategy ma_crossover initialized with config: {'fast_period': 10, 'slow_period': 30, 'asset_classes': ['stocks', 'forex', 'crypto'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.05, 'take_profit_pct': 0.1}
+2025-08-12 15:16:29 | INFO     | __main__:193 - Loaded strategy: ma_crossover
+2025-08-12 15:16:29 | INFO     | strategies.base:38 - Strategy bollinger_bands initialized with config: {'period': 20, 'std_dev': 2, 'mode': 'breakout', 'asset_classes': ['stocks', 'forex'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.04, 'take_profit_pct': 0.08}
+2025-08-12 15:16:29 | INFO     | __main__:193 - Loaded strategy: bollinger_bands
+2025-08-12 15:16:29 | INFO     | __main__:115 - Trading system initialized successfully
+2025-08-12 15:16:29 | INFO     | __main__:201 - Starting trading system...
+2025-08-12 15:16:32 | WARNING  | execution.broker:98 - IBKR Error 502: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is enabled and connection port is the same as "Socket Port" on the 
+TWS "Edit->Global Configuration...->API->Settings" menu. Live Trading ports: 
+TWS: 7496; IB Gateway: 4001. Simulated Trading ports for new installations 
+of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
+2025-08-12 15:16:34 | ERROR    | execution.broker:51 - Broker connection failed: Failed to establish broker connection
+2025-08-12 15:16:34 | ERROR    | __main__:369 - System error: Broker connection failed: Failed to establish broker connection
+2025-08-12 15:16:34 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 15:16:34 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 15:16:34 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 15:16:34 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 15:16:34 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 15:16:34 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 15:16:34 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 15:16:34 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 15:17:08 | INFO     | __main__:53 - Redis not available, running without cache
+2025-08-12 15:17:08 | INFO     | __main__:94 - Initializing trading system...
+2025-08-12 15:17:08 | INFO     | monitoring.metrics:47 - Metrics collection started
+2025-08-12 15:17:08 | INFO     | data.storage:59 - Database initialized successfully
+2025-08-12 15:17:08 | INFO     | core.events:47 - Event bus started
+2025-08-12 15:17:08 | INFO     | strategies.base:38 - Strategy ma_crossover initialized with config: {'fast_period': 10, 'slow_period': 30, 'asset_classes': ['stocks', 'forex', 'crypto'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.05, 'take_profit_pct': 0.1}
+2025-08-12 15:17:08 | INFO     | __main__:193 - Loaded strategy: ma_crossover
+2025-08-12 15:17:08 | INFO     | strategies.base:38 - Strategy bollinger_bands initialized with config: {'period': 20, 'std_dev': 2, 'mode': 'breakout', 'asset_classes': ['stocks', 'forex'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.04, 'take_profit_pct': 0.08}
+2025-08-12 15:17:08 | INFO     | __main__:193 - Loaded strategy: bollinger_bands
+2025-08-12 15:17:08 | INFO     | __main__:115 - Trading system initialized successfully
+2025-08-12 15:17:08 | INFO     | __main__:201 - Starting trading system...
+2025-08-12 15:17:08 | DEBUG    | execution.broker:69 - Next valid order ID: 1
+2025-08-12 15:17:08 | DEBUG    | execution.broker:96 - IBKR Info 2104: Market data farm connection is OK:usfarm
+2025-08-12 15:17:08 | DEBUG    | execution.broker:96 - IBKR Info 2106: HMDS data farm connection is OK:ushmds
+2025-08-12 15:17:08 | DEBUG    | execution.broker:96 - IBKR Info 2158: Sec-def data farm connection is OK:secdefil
+2025-08-12 15:17:10 | INFO     | execution.broker:45 - Connected to IBKR broker at 127.0.0.1:7497
+2025-08-12 15:17:10 | INFO     | execution.engine:35 - Execution engine started
+2025-08-12 15:17:10 | INFO     | __main__:227 - Subscribing to market data for: ['NVDA', 'MSFT', 'GOOGL', 'AAPL', 'TSLA']
+2025-08-12 15:17:10 | INFO     | __main__:214 - Trading system started successfully
+2025-08-12 15:17:10 | DEBUG    | data.providers:79 - IBKR connection acknowledged
+2025-08-12 15:17:10 | DEBUG    | data.providers:84 - IBKR Info 2104: Market data farm connection is OK:usfarm
+2025-08-12 15:17:10 | DEBUG    | data.providers:84 - IBKR Info 2106: HMDS data farm connection is OK:ushmds
+2025-08-12 15:17:10 | DEBUG    | data.providers:84 - IBKR Info 2158: Sec-def data farm connection is OK:secdefil
+2025-08-12 15:17:12 | INFO     | data.providers:59 - Connected to IBKR at 127.0.0.1:7497
+2025-08-12 15:17:12 | INFO     | data.providers:164 - Subscribed to NVDA (req_id: 1000)
+2025-08-12 15:17:13 | INFO     | data.providers:164 - Subscribed to MSFT (req_id: 1001)
+2025-08-12 15:17:13 | INFO     | data.providers:164 - Subscribed to GOOGL (req_id: 1002)
+2025-08-12 15:17:13 | INFO     | data.providers:164 - Subscribed to AAPL (req_id: 1003)
+2025-08-12 15:17:13 | INFO     | data.providers:164 - Subscribed to TSLA (req_id: 1004)
+2025-08-12 15:17:13 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.NVDA NASDAQ.NMS/TOP/ALL
+2025-08-12 15:17:13 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.MSFT NASDAQ.NMS/TOP/ALL
+2025-08-12 15:17:13 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.GOOGL NASDAQ.NMS/TOP/ALL
+2025-08-12 15:17:13 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.AAPL NASDAQ.NMS/TOP/ALL
+2025-08-12 15:17:14 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.TSLA NASDAQ.NMS/TOP/ALL
+2025-08-12 15:17:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:17:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:17:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:17:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:17:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:17:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:17:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:17:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:17:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:17:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:17:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:18:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:18:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:18:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:18:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:18:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:19:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:19:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:19:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:19:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:19:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:20:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:20:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:20:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:20:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:20:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:21:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:21:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:21:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:21:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:21:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:22:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:22:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:22:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:22:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:22:57 | WARNING  | execution.broker:98 - IBKR Error 2107: HMDS data farm connection is inactive but should be available upon demand.ushmds
+2025-08-12 15:22:57 | WARNING  | data.providers:88 - IBKR Error 2107: HMDS data farm connection is inactive but should be available upon demand.ushmds
+2025-08-12 15:22:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:23:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:23:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:23:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:23:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:23:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:24:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:24:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:24:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:24:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:24:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:25:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:25:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:25:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:25:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:25:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:26:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:26:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:26:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:26:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:26:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:27:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:27:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:27:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:27:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:27:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:28:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:28:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:28:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:28:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:28:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:29:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:29:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:29:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:29:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:29:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:30:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:30:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:30:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:30:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:30:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:31:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:31:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:31:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:31:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:31:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:32:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:32:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:32:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:32:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:32:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:33:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:33:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:33:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:33:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:33:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:34:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:34:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:34:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:34:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:34:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:35:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:35:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:35:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:35:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:35:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:36:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:36:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:36:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:36:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:36:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:37:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:37:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:37:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:37:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:37:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:38:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:38:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:38:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:38:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:38:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:39:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:39:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:39:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:39:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:39:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:40:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:40:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:40:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:40:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:40:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:41:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:41:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:41:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:41:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:41:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:42:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:42:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:42:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:42:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:42:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:43:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:43:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:43 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:43:43 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:43:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:43:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:44:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:44:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:44:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:44:13 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:44:13 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:44:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:44:18 | INFO     | __main__:349 - Received shutdown signal
+2025-08-12 15:44:18 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 15:44:18 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 15:44:18 | INFO     | data.providers:218 - Disconnected from IBKR
+2025-08-12 15:44:18 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 15:44:18 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 15:44:18 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 15:44:18 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 15:44:18 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 15:44:18 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 15:44:18 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 15:44:18 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 15:44:18 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 15:44:18 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 15:44:18 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 15:44:18 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 15:44:18 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 15:44:18 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 15:44:31 | INFO     | __main__:349 - Received shutdown signal
+2025-08-12 15:44:31 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 15:44:31 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 15:44:31 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 15:44:31 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 15:44:31 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 15:44:31 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 15:44:31 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 15:44:31 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 15:44:33 | INFO     | __main__:349 - Received shutdown signal
+2025-08-12 15:44:33 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 15:44:33 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 15:44:33 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 15:44:33 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 15:44:33 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 15:44:33 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 15:44:33 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 15:44:33 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 15:44:35 | INFO     | __main__:349 - Received shutdown signal
+2025-08-12 15:44:35 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 15:44:35 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 15:44:35 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 15:44:35 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 15:44:35 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 15:44:35 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 15:44:35 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 15:44:35 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 15:44:37 | INFO     | __main__:349 - Received shutdown signal
+2025-08-12 15:44:37 | INFO     | __main__:266 - Stopping trading system...
+2025-08-12 15:44:37 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 15:44:37 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 15:44:37 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 15:44:37 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 15:44:37 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 15:44:37 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 15:44:37 | INFO     | __main__:292 - Trading system stopped
+2025-08-12 15:47:18 | INFO     | __main__:61 - Redis not available, running without cache
+2025-08-12 15:47:18 | INFO     | __main__:102 - Initializing trading system...
+2025-08-12 15:47:18 | INFO     | monitoring.metrics:47 - Metrics collection started
+2025-08-12 15:47:18 | INFO     | data.storage:59 - Database initialized successfully
+2025-08-12 15:47:18 | INFO     | core.events:47 - Event bus started
+2025-08-12 15:47:18 | INFO     | strategies.base:38 - Strategy ma_crossover initialized with config: {'fast_period': 10, 'slow_period': 30, 'asset_classes': ['stocks', 'forex', 'crypto'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.05, 'take_profit_pct': 0.1}
+2025-08-12 15:47:18 | INFO     | __main__:201 - Loaded strategy: ma_crossover
+2025-08-12 15:47:18 | INFO     | strategies.base:38 - Strategy bollinger_bands initialized with config: {'period': 20, 'std_dev': 2, 'mode': 'breakout', 'asset_classes': ['stocks', 'forex'], 'risk_per_trade': 0.02, 'stop_loss_pct': 0.04, 'take_profit_pct': 0.08}
+2025-08-12 15:47:18 | INFO     | __main__:201 - Loaded strategy: bollinger_bands
+2025-08-12 15:47:18 | INFO     | __main__:123 - Trading system initialized successfully
+2025-08-12 15:47:18 | INFO     | __main__:209 - Starting trading system...
+2025-08-12 15:47:18 | DEBUG    | execution.broker:69 - Next valid order ID: 1
+2025-08-12 15:47:18 | DEBUG    | execution.broker:96 - IBKR Info 2104: Market data farm connection is OK:usfarm
+2025-08-12 15:47:18 | WARNING  | execution.broker:98 - IBKR Error 2107: HMDS data farm connection is inactive but should be available upon demand.ushmds
+2025-08-12 15:47:18 | DEBUG    | execution.broker:96 - IBKR Info 2158: Sec-def data farm connection is OK:secdefil
+2025-08-12 15:47:20 | INFO     | execution.broker:45 - Connected to IBKR broker at 127.0.0.1:7497
+2025-08-12 15:47:20 | INFO     | execution.engine:35 - Execution engine started
+2025-08-12 15:47:20 | INFO     | __main__:235 - Subscribing to market data for: ['NVDA', 'GOOGL', 'TSLA', 'AAPL', 'MSFT']
+2025-08-12 15:47:20 | INFO     | __main__:222 - Trading system started successfully
+2025-08-12 15:47:20 | DEBUG    | data.providers:79 - IBKR connection acknowledged
+2025-08-12 15:47:20 | DEBUG    | data.providers:84 - IBKR Info 2104: Market data farm connection is OK:usfarm
+2025-08-12 15:47:20 | WARNING  | data.providers:88 - IBKR Error 2107: HMDS data farm connection is inactive but should be available upon demand.ushmds
+2025-08-12 15:47:20 | DEBUG    | data.providers:84 - IBKR Info 2158: Sec-def data farm connection is OK:secdefil
+2025-08-12 15:47:22 | INFO     | data.providers:59 - Connected to IBKR at 127.0.0.1:7497
+2025-08-12 15:47:22 | INFO     | data.providers:164 - Subscribed to NVDA (req_id: 1000)
+2025-08-12 15:47:22 | INFO     | data.providers:164 - Subscribed to GOOGL (req_id: 1001)
+2025-08-12 15:47:22 | INFO     | data.providers:164 - Subscribed to TSLA (req_id: 1002)
+2025-08-12 15:47:22 | INFO     | data.providers:164 - Subscribed to AAPL (req_id: 1003)
+2025-08-12 15:47:23 | INFO     | data.providers:164 - Subscribed to MSFT (req_id: 1004)
+2025-08-12 15:47:23 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.NVDA NASDAQ.NMS/TOP/ALL
+2025-08-12 15:47:23 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.GOOGL NASDAQ.NMS/TOP/ALL
+2025-08-12 15:47:23 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.TSLA NASDAQ.NMS/TOP/ALL
+2025-08-12 15:47:23 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.AAPL NASDAQ.NMS/TOP/ALL
+2025-08-12 15:47:23 | WARNING  | data.providers:86 - IBKR Error 10089: Requested market data requires additional subscription for API. See link in 'Market Data Connections' dialog for more details.Delayed market data is available.MSFT NASDAQ.NMS/TOP/ALL
+2025-08-12 15:47:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:47:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:47:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:47:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:47:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:47:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:47:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:47:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:47:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:48:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:48:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:48:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:48:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:48:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:49:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:49:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:49:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:49:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:49:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:50:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:50:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:50:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:50:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:50:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:51:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:51:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:51:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:51:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:51:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:52:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:52:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:52:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:52:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:52:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:53:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:53:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:53:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:53:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:53:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:54:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:54:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:54:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:54:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:54:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:55:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:55:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:55:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:55:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:55:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:56:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:56:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:56:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:56:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:56:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:57:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:57:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:57:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:57:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:57:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:58:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:58:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:58:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:58:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:58:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:59:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:59:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 15:59:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 15:59:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 15:59:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:00:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:00:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:00:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:00:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:00:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:01:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:01:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:28 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:33 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:38 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:43 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:48 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:01:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:01:53 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:01:58 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:03 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:08 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:13 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:18 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:02:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:02:23 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:02:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:02:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:02:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:03:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:03:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:03:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:03:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:03:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:04:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:04:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:04:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:04:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:04:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:05:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:05:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:05:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:05:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:05:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:06:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:06:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:06:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:06:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:06:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:07:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:07:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:07:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:07:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:07:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:08:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:08:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:08:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:08:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:08:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:09:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:09:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:09:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:09:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:09:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:10:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:10:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:10:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:10:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:10:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:11:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:11:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:39 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:44 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:49 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:11:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:11:54 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:11:59 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:04 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:09 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:14 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:19 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:12:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:12:24 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:29 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:34 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:12:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:12:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:12:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:13:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:13:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:13:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:13:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:13:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:14:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:14:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:14:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:14:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:14:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:15:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:15:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:15:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:15:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:15:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:16:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:16:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:16:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:16:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:16:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:17:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:17:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:17:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:17:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:17:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:18:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:18:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:18:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:18:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:18:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:19:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:19:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:19:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:19:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:19:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:20:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:20:25 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:30 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:35 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:40 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:45 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:50 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:20:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:20:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:20:55 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:00 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:05 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:10 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:15 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:20 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:21:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:21:26 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:31 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:36 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:41 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:46 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:51 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:21:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:21:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:21:56 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:01 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:06 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:11 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:16 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:21 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:22:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:22:26 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:31 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:36 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:41 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:46 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:51 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:22:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:22:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:22:56 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:01 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:06 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:11 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:16 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:21 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:23:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:23:26 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:31 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:36 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:41 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:46 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:51 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:23:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:23:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:23:56 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:01 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:06 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:11 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:16 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:21 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:24:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:24:26 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:31 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:36 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:41 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:46 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:51 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:24:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:24:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:24:56 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:01 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:06 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:11 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:16 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:21 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:25:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:25:26 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:31 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:36 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:41 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:46 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:51 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:25:53 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:25:53 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:25:56 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:01 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:06 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:11 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:16 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:21 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:23 | INFO     | data.providers:187 - 📊 Data Status: 0 price updates received
+2025-08-12 16:26:23 | INFO     | data.providers:192 - ⏰ No price updates received yet
+2025-08-12 16:26:26 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:31 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:36 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:41 | DEBUG    | data.providers:177 - No market data received in last 5 seconds. Total updates: 0
+2025-08-12 16:26:45 | INFO     | __main__:397 - Received shutdown signal
+2025-08-12 16:26:45 | INFO     | __main__:274 - Stopping trading system...
+2025-08-12 16:26:45 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 16:26:45 | INFO     | data.providers:218 - Disconnected from IBKR
+2025-08-12 16:26:45 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 16:26:45 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 16:26:45 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 16:26:45 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 16:26:45 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 16:26:45 | INFO     | __main__:300 - Trading system stopped
+2025-08-12 16:26:46 | INFO     | __main__:274 - Stopping trading system...
+2025-08-12 16:26:46 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-12 16:26:46 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-12 16:26:46 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-12 16:26:46 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-12 16:26:46 | INFO     | core.events:60 - Event bus stopped
+2025-08-12 16:26:46 | INFO     | data.storage:96 - Database connections closed
+2025-08-12 16:26:46 | INFO     | __main__:300 - Trading system stopped

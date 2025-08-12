@@ -1,0 +1,60 @@
+{
+  "AAPL": {
+    "09:30-11:00": {
+      "period": "09:30-11:00",
+      "mean_return_annual": 2.4962080737720633,
+      "volatility_annual": 0.3730473844693275,
+      "sharpe_ratio": 6.691396797548932,
+      "volume_ratio": 1.5861615093364871,
+      "data_points": 59,
+      "recommendation_score": 0.7761715693184035
+    },
+    "11:00-14:00": {
+      "period": "11:00-14:00",
+      "mean_return_annual": 1.8530704057259935,
+      "volatility_annual": 0.3869024926098054,
+      "sharpe_ratio": 4.789502371065961,
+      "volume_ratio": 0.7383937832793744,
+      "data_points": 85,
+      "recommendation_score": 0.689376639417929
+    },
+    "14:00-16:00": {
+      "period": "14:00-16:00",
+      "mean_return_annual": 2.7099270212027515,
+      "volatility_annual": 0.46673705334619187,
+      "sharpe_ratio": 5.80611074645647,
+      "volume_ratio": 0.7795178459000078,
+      "data_points": 56,
+      "recommendation_score": 0.6538131217622872
+    }
+  },
+  "MSFT": {
+    "09:30-11:00": {
+      "period": "09:30-11:00",
+      "mean_return_annual": 1.586892693266658,
+      "volatility_annual": 0.36414931183510674,
+      "sharpe_ratio": 4.357807749984795,
+      "volume_ratio": 1.5443074041336033,
+      "data_points": 59,
+      "recommendation_score": 0.781510412898936
+    },
+    "11:00-14:00": {
+      "period": "11:00-14:00",
+      "mean_return_annual": 1.2248609172467888,
+      "volatility_annual": 0.30829340107847475,
+      "sharpe_ratio": 3.97303644178555,
+      "volume_ratio": 0.6764085857531339,
+      "data_points": 85,
+      "recommendation_score": 0.7179465350788553
+    },
+    "14:00-16:00": {
+      "period": "14:00-16:00",
+      "mean_return_annual": 1.779763182264592,
+      "volatility_annual": 0.31385963705219483,
+      "sharpe_ratio": 5.670570446650385,
+      "volume_ratio": 0.9176988101268037,
+      "data_points": 56,
+      "recommendation_score": 0.7869938608067242
+    }
+  }
+}
