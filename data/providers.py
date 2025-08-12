@@ -207,31 +207,31 @@ class IBKRDataProvider(EWrapper, EClient, IDataProvider):
         return []
     
     async def disconnect(self):
-    """Disconnect from IBKR"""
-    if self._connected:
-        try:
-            # Properly await the disconnect to avoid RuntimeWarning
-            self._connected = False
-            
-            # Cancel the message loop task first
-            if hasattr(self, '_thread') and not self._thread.done():
-                self._thread.cancel()
-                try:
-                    await self._thread
-                except asyncio.CancelledError:
-                    pass  # Expected when cancelling
-            
-            # Use executor for the actual disconnect to avoid blocking
-            await asyncio.get_event_loop().run_in_executor(
-                None, super().disconnect
-            )
-            
-            logger.info("Disconnected from IBKR")
-            
-        except Exception as e:
-            logger.error(f"Error during IBKR disconnect: {e}")
-    else:
-        logger.debug("IBKR was not connected")
+        """Disconnect from IBKR"""
+        if self._connected:
+            try:
+                # Properly await the disconnect to avoid RuntimeWarning
+                self._connected = False
+                
+                # Cancel the message loop task first
+                if hasattr(self, '_thread') and not self._thread.done():
+                    self._thread.cancel()
+                    try:
+                        await self._thread
+                    except asyncio.CancelledError:
+                        pass  # Expected when cancelling
+                
+                # Use executor for the actual disconnect to avoid blocking
+                await asyncio.get_event_loop().run_in_executor(
+                    None, super().disconnect
+                )
+                
+                logger.info("Disconnected from IBKR")
+                
+            except Exception as e:
+                logger.error(f"Error during IBKR disconnect: {e}")
+        else:
+            logger.debug("IBKR was not connected")
                 
     def get_stats(self) -> Dict:
         """Get connection statistics"""
