@@ -78,23 +78,14 @@ strategies:
       risk_per_trade: 0.02
       std_dev: 2
       stop_loss_pct: 0.04
+      symbols:
+      - AAPL
+      - MSFT
+      - GOOGL
+      - TSLA
+      - NVDA
       take_profit_pct: 0.08
     type: conventional
-  lstm_prediction:
-    description: LSTM neural network price prediction
-    enabled: false
-    parameters:
-      asset_classes:
-      - crypto
-      - forex
-      confidence_threshold: 0.7
-      lookback_window: 60
-      prediction_horizon: 5
-      retrain_frequency: 168
-      risk_per_trade: 0.025
-      stop_loss_pct: 0.06
-      take_profit_pct: 0.12
-    type: ml
   ma_crossover:
     description: Simple moving average crossover strategy
     enabled: true
@@ -107,168 +98,14 @@ strategies:
       risk_per_trade: 0.02
       slow_period: 30
       stop_loss_pct: 0.05
-      take_profit_pct: 0.1
-    type: conventional
-  optimized_aapl:
-    description: 'IBKR-optimized strategy for AAPL (Score: 0.497)'
-    enabled: !!python/object/apply:numpy._core.multiarray.scalar
-    - &id002 !!python/object/apply:numpy.dtype
-      args:
-      - b1
-      - false
-      - true
-      state: !!python/tuple
-      - 3
-      - '|'
-      - null
-      - null
-      - null
-      - -1
-      - -1
-      - 0
-    - !!binary |
-      AA==
-    parameters:
-      asset_class: stocks
-      composite_score: !!python/object/apply:numpy._core.multiarray.scalar
-      - &id001 !!python/object/apply:numpy.dtype
-        args:
-        - f8
-        - false
-        - true
-        state: !!python/tuple
-        - 3
-        - <
-        - null
-        - null
-        - null
-        - -1
-        - -1
-        - 0
-      - !!binary |
-        B52U/HPQ3z8=
-      correlation_limit: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        u6ibBetZ7T8=
-      currency: USD
-      edge_threshold: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        Z36fIkmxpD8=
-      exchange: SMART
-      ibkr_settings:
-        adapt_to_conditions: true
-        hidden: false
-        outside_rth: false
-        smart_routing: true
-        sweep_to_fill: false
-      liquidity_threshold: 1
-      monte_carlo_confidence: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        NHNCDewN2D8=
-      optimization_date: '2025-08-12T15:54:03.114670'
-      order_type: MKT
-      platform: IBKR
-      position_size_multiplier: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        B52U/HPQ3z8=
-      recommendation: HOLD - Neutral
-      reoptimize_after_days: 30
-      risk_per_trade: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        JSpv4YOAiT8=
-      stop_loss_pct: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        SYoehGtysD8=
       symbols:
       - AAPL
-      take_profit_pct: 0.02
-      time_in_force: DAY
-      trading_hours: 09:30-16:00
-      volatility_adjustment: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        t1KP7F9E5D8=
-    type: conventional
-  optimized_msft:
-    description: 'IBKR-optimized strategy for MSFT (Score: 0.528)'
-    enabled: !!python/object/apply:numpy._core.multiarray.scalar
-    - *id002
-    - !!binary |
-      AQ==
-    parameters:
-      asset_class: stocks
-      composite_score: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        IXKMr5bm4D8=
-      correlation_limit: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        wuIZd2+10D8=
-      currency: USD
-      edge_threshold: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        vDQEdCcOqz8=
-      exchange: SMART
-      ibkr_settings:
-        adapt_to_conditions: true
-        hidden: false
-        outside_rth: false
-        smart_routing: true
-        sweep_to_fill: false
-      liquidity_threshold: 1
-      monte_carlo_confidence: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        LoXoqqzW4T8=
-      optimization_date: '2025-08-12T15:54:03.454068'
-      order_type: MKT
-      platform: IBKR
-      position_size_multiplier: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        IXKMr5bm4D8=
-      recommendation: HOLD - Neutral
-      reoptimize_after_days: 30
-      risk_per_trade: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        n3bGfU0hij8=
-      stop_loss_pct: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        sTCpVTcNsD8=
-      symbols:
       - MSFT
-      take_profit_pct: 0.02
-      time_in_force: DAY
-      trading_hours: 09:30-16:00
-      volatility_adjustment: !!python/object/apply:numpy._core.multiarray.scalar
-      - *id001
-      - !!binary |
-        wWtkyc0v3z8=
-    type: conventional
-  rf_classification:
-    description: Random forest for trend classification
-    enabled: false
-    parameters:
-      asset_classes:
-      - stocks
-      feature_window: 30
-      max_depth: 10
-      n_estimators: 100
-      retrain_frequency: 24
-      risk_per_trade: 0.02
-      stop_loss_pct: 0.05
+      - GOOGL
+      - TSLA
+      - NVDA
       take_profit_pct: 0.1
-    type: ml
+    type: conventional
   rsi_mean_reversion:
     description: RSI-based mean reversion strategy
     enabled: false
@@ -280,5 +117,11 @@ strategies:
       risk_per_trade: 0.015
       rsi_period: 14
       stop_loss_pct: 0.03
+      symbols:
+      - AAPL
+      - MSFT
+      - GOOGL
+      - TSLA
+      - NVDA
       take_profit_pct: 0.06
     type: conventional

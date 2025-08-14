@@ -1,0 +1,48 @@
+# docker-compose.yml for complete trading system
+# Save this as docker-compose.yml in your trading_system directory
+
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: trading-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - trading-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: trading-redis-ui
+    restart: unless-stopped
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    networks:
+      - trading-network
+    depends_on:
+      - redis
+    profiles:
+      - ui  # Optional UI, start with: docker-compose --profile ui up
+
+volumes:
+  redis-data:
+    driver: local
+
+networks:
+  trading-network:
+    driver: bridge
