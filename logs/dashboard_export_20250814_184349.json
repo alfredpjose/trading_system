@@ -1,0 +1,70 @@
+{
+  "timestamp": "2025-08-14T18:43:49.437500",
+  "system_status": {
+    "Trading System": false,
+    "IBKR Connection": false,
+    "Data Feed": true,
+    "Strategies Active": true,
+    "Risk Manager": false
+  },
+  "positions": [
+    {
+      "symbol": "AAPL",
+      "quantity": 100,
+      "price": 175.5,
+      "pnl": 250.0,
+      "pnl_pct": 0.014
+    },
+    {
+      "symbol": "MSFT",
+      "quantity": 50,
+      "price": 380.25,
+      "pnl": -125.5,
+      "pnl_pct": -0.007
+    },
+    {
+      "symbol": "GOOGL",
+      "quantity": 25,
+      "price": 142.8,
+      "pnl": 87.5,
+      "pnl_pct": 0.025
+    }
+  ],
+  "strategies": [
+    {
+      "name": "ma_crossover",
+      "signals": 12,
+      "pnl": 485.5,
+      "win_rate": 0.67,
+      "active": true,
+      "status": "Running"
+    },
+    {
+      "name": "bollinger_bands",
+      "signals": 8,
+      "pnl": -123.25,
+      "win_rate": 0.38,
+      "active": true,
+      "status": "Running"
+    },
+    {
+      "name": "rsi_reversion",
+      "signals": 0,
+      "pnl": 0.0,
+      "win_rate": 0.0,
+      "active": false,
+      "status": "Disabled"
+    }
+  ],
+  "risk_metrics": {
+    "daily_pnl": 362.25,
+    "daily_pnl_pct": 0.0036,
+    "current_drawdown": 0.012,
+    "max_drawdown": 0.025,
+    "portfolio_heat": 0.08,
+    "max_heat": 0.1,
+    "open_positions": 3,
+    "max_positions": 5,
+    "circuit_breaker": false
+  }
+}

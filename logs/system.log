@@ -5791,3 +5791,36 @@ of version 954.1 or newer:  TWS: 7497; IB Gateway: 4002
 2025-08-14 15:40:47 | INFO     | __main__:201 - Loaded strategy: ma_crossover
 2025-08-14 15:40:47 | INFO     | __main__:123 - Trading system initialized successfully
 2025-08-14 15:40:47 | INFO     | __main__:209 - Starting trading system...
+2025-08-14 19:36:21 | INFO     | __main__:426 - Received shutdown signal
+2025-08-14 19:36:21 | INFO     | __main__:274 - Stopping trading system...
+2025-08-14 19:36:21 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-14 19:36:21 | DEBUG    | data.providers:234 - IBKR was not connected
+2025-08-14 19:36:21 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-14 19:36:21 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-14 19:36:21 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-14 19:36:21 | INFO     | core.events:60 - Event bus stopped
+2025-08-14 19:36:21 | INFO     | data.cache:33 - Disconnected from Redis cache
+2025-08-14 19:36:21 | INFO     | data.storage:96 - Database connections closed
+2025-08-14 19:36:21 | INFO     | __main__:307 - Trading system stopped
+2025-08-14 19:36:28 | INFO     | __main__:426 - Received shutdown signal
+2025-08-14 19:36:28 | INFO     | __main__:274 - Stopping trading system...
+2025-08-14 19:36:28 | INFO     | execution.engine:40 - Execution engine stopped
+2025-08-14 19:36:28 | DEBUG    | data.providers:234 - IBKR was not connected
+2025-08-14 19:36:28 | INFO     | strategies.base:118 - Strategy bollinger_bands cleanup complete. Generated 0 signals
+2025-08-14 19:36:28 | INFO     | strategies.base:118 - Strategy ma_crossover cleanup complete. Generated 0 signals
+2025-08-14 19:36:28 | INFO     | monitoring.metrics:52 - Metrics collection stopped
+2025-08-14 19:36:28 | INFO     | core.events:60 - Event bus stopped
+2025-08-14 19:36:28 | INFO     | data.cache:33 - Disconnected from Redis cache
+2025-08-14 19:36:28 | INFO     | data.storage:96 - Database connections closed
+2025-08-14 19:36:28 | INFO     | __main__:307 - Trading system stopped
+2025-08-14 19:36:37 | INFO     | __main__:102 - Initializing trading system...
+2025-08-14 19:36:37 | INFO     | monitoring.metrics:47 - Metrics collection started
+2025-08-14 19:36:37 | INFO     | data.cache:24 - Connected to Redis cache
+2025-08-14 19:36:37 | INFO     | data.storage:59 - Database initialized successfully
+2025-08-14 19:36:37 | INFO     | core.events:47 - Event bus started
+2025-08-14 19:36:37 | INFO     | strategies.base:38 - Strategy bollinger_bands initialized with config: {'asset_classes': ['stocks', 'forex'], 'mode': 'breakout', 'period': 20, 'risk_per_trade': 0.02, 'std_dev': 2, 'stop_loss_pct': 0.04, 'symbols': ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'NVDA'], 'take_profit_pct': 0.08}
+2025-08-14 19:36:37 | INFO     | __main__:201 - Loaded strategy: bollinger_bands
+2025-08-14 19:36:37 | INFO     | strategies.base:38 - Strategy ma_crossover initialized with config: {'asset_classes': ['stocks', 'forex', 'crypto'], 'fast_period': 10, 'risk_per_trade': 0.02, 'slow_period': 30, 'stop_loss_pct': 0.05, 'symbols': ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'NVDA'], 'take_profit_pct': 0.1}
+2025-08-14 19:36:37 | INFO     | __main__:201 - Loaded strategy: ma_crossover
+2025-08-14 19:36:37 | INFO     | __main__:123 - Trading system initialized successfully
+2025-08-14 19:36:37 | INFO     | __main__:209 - Starting trading system...

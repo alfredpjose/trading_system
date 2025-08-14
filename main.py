@@ -2402,12 +2402,31 @@ def get_current_positions() -> List[Dict]:
     ]
 
 def get_strategy_performance() -> List[Dict]:
-    """Get strategy performance data (mock data for demo)"""
-    return [
-        {"name": "ma_crossover", "signals": 12, "pnl": 485.50, "win_rate": 0.67, "active": True, "status": "Running"},
-        {"name": "bollinger_bands", "signals": 8, "pnl": -123.25, "win_rate": 0.38, "active": True, "status": "Running"},
-        {"name": "rsi_reversion", "signals": 0, "pnl": 0.00, "win_rate": 0.00, "active": False, "status": "Disabled"}
-    ]
+    """Get strategy performance data from actual trading system"""
+    # In real implementation, this would query the actual strategy performance
+    # from the trading system's strategy objects and trade history
+    
+    strategies = []
+    
+    # Get enabled strategies from config
+    try:
+        from config import get_config
+        config = get_config()
+        
+        for name, strategy_config in config.strategies.items():
+            if strategy_config.enabled:
+                strategies.append({
+                    "name": name,
+                    "signals": 0,  # Would be populated from actual strategy
+                    "pnl": 0.00,   # Would be calculated from actual trades
+                    "win_rate": 0.00,  # Would be calculated from trade history
+                    "active": True,
+                    "status": "Running"
+                })
+    except Exception as e:
+        print(f"⚠️ Could not get real strategy performance: {e}")
+    
+    return strategies
 
 def get_risk_metrics() -> Dict:
     """Get current risk metrics (mock data for demo)"""
