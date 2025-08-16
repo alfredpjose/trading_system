@@ -1,0 +1,48 @@
+market_hours:
+  CRYPTO:
+    regular:
+      end: '23:59'
+      note: 24/7 trading
+      start: 00:00
+      timezone: UTC
+  FOREX:
+    london_open:
+      start: 03:00
+      timezone: US/Eastern
+    ny_open:
+      start: 08:00
+      timezone: US/Eastern
+    regular:
+      end: '17:00'
+      note: 24/5 trading
+      start: '17:00'
+      timezone: US/Eastern
+    sydney_open:
+      start: '17:00'
+      timezone: US/Eastern
+    tokyo_open:
+      start: '19:00'
+      timezone: US/Eastern
+  FUTURES:
+    pit_session:
+      end: '16:15'
+      start: 09:30
+      timezone: US/Eastern
+    regular:
+      end: '17:00'
+      note: Nearly 24/5
+      start: '18:00'
+      timezone: US/Eastern
+  US_STOCKS:
+    after_hours:
+      end: '20:00'
+      start: '16:00'
+      timezone: US/Eastern
+    pre_market:
+      end: 09:30
+      start: 04:00
+      timezone: US/Eastern
+    regular:
+      end: '16:00'
+      start: 09:30
+      timezone: US/Eastern

@@ -1,127 +1,85 @@
-asset_classes:
+asset_class_limits:
+  commodities:
+    max_allocation: 0.2
   crypto:
-    exchanges:
-    - binance
-    - coinbase
-    - kraken
-    min_market_cap: 1000000000
-    trading_hours:
-      end: '23:59'
-      start: 00:00
-      timezone: UTC
+    max_allocation: 0.05
   forex:
-    major_pairs:
-    - EUR/USD
-    - GBP/USD
-    - USD/JPY
-    - USD/CHF
-    trading_hours:
-      end: '17:00'
-      start: '17:00'
-      timezone: US/Eastern
+    max_allocation: 0.25
+  futures:
+    max_allocation: 0.1
   stocks:
-    max_price: 1000.0
-    min_price: 5.0
-    min_volume: 100000
-    trading_hours:
-      end: '16:00'
-      start: 09:30
-      timezone: US/Eastern
-backtesting:
-  benchmark: SPY
-  default_end_date: '2024-12-31'
-  default_start_date: '2020-01-01'
-  initial_capital: 100000
-  metrics:
-  - total_return
-  - sharpe_ratio
-  - max_drawdown
-  - win_rate
-  - profit_factor
-  - calmar_ratio
+    max_allocation: 0.4
 global_settings:
   correlation_threshold: 0.7
-  data_requirements:
-    min_history_days: 252
-    required_indicators:
-    - sma
-    - ema
-    - rsi
-    - bollinger
-    - volume
-    required_timeframes:
-    - 1m
-    - 5m
-    - 1h
-    - 1d
   execution:
-    commission_rate: 0.001
-    market_impact_factor: 0.0001
-    order_timeout: 30
-    slippage_model: linear
-  max_concurrent_positions: 5
-  portfolio_heat: 0.1
+    commission_rates:
+      crypto: 0.001
+      forex: 2.5e-05
+      futures: 2.5
+      options: 1.0
+      stocks: 0.005
+    slippage_model: adaptive
+  max_concurrent_positions: 10
+  portfolio_heat: 0.15
   risk_management:
     max_daily_loss: 0.05
     max_drawdown: 0.2
-    position_sizing_method: fixed_fractional
+    position_sizing_method: volatility_adjusted
 strategies:
-  bollinger_bands:
-    description: Bollinger Bands breakout/reversion strategy
+  commodity_seasonality:
+    description: Commodity seasonality strategy
     enabled: true
     parameters:
-      asset_classes:
-      - stocks
-      - forex
-      mode: breakout
-      period: 20
-      risk_per_trade: 0.02
-      std_dev: 2
-      stop_loss_pct: 0.04
-      symbols:
-      - AAPL
-      - MSFT
-      - GOOGL
-      - TSLA
-      - NVDA
-      take_profit_pct: 0.08
+      markets:
+        commodities:
+        - ZC
+        - ZS
+        - ZW
+        - NG
+        - CL
+      risk_per_trade: 0.025
+      seasonal_patterns: true
+      storage_cost_factor: true
     type: conventional
-  ma_crossover:
-    description: Simple moving average crossover strategy
+  forex_carry_trade:
+    description: Forex carry trade strategy
     enabled: true
     parameters:
-      asset_classes:
-      - stocks
-      - forex
-      - crypto
-      fast_period: 10
-      risk_per_trade: 0.02
-      slow_period: 30
-      stop_loss_pct: 0.05
-      symbols:
-      - AAPL
-      - MSFT
-      - GOOGL
-      - TSLA
-      - NVDA
-      take_profit_pct: 0.1
-    type: conventional
-  rsi_mean_reversion:
-    description: RSI-based mean reversion strategy
-    enabled: false
-    parameters:
-      asset_classes:
-      - stocks
-      overbought_threshold: 70
-      oversold_threshold: 30
+      hold_period_days: 30
+      interest_rate_threshold: 0.02
+      markets:
+        forex:
+        - AUD.USD
+        - NZD.USD
+        - USD.JPY
+        - EUR.USD
       risk_per_trade: 0.015
-      rsi_period: 14
-      stop_loss_pct: 0.03
-      symbols:
-      - AAPL
-      - MSFT
-      - GOOGL
-      - TSLA
-      - NVDA
-      take_profit_pct: 0.06
+    type: conventional
+  multi_market_momentum:
+    description: Momentum strategy across all asset classes
+    enabled: true
+    parameters:
+      lookback_period: 20
+      markets:
+        commodities:
+        - GC
+        - CL
+        - NG
+        forex:
+        - EUR.USD
+        - GBP.USD
+        - USD.JPY
+        futures:
+        - ES
+        - NQ
+        stocks:
+        - AAPL
+        - MSFT
+        - GOOGL
+        - TSLA
+        - SPY
+      momentum_threshold: 0.02
+      risk_per_trade: 0.02
+      stop_loss_pct: 0.05
+      take_profit_pct: 0.1
     type: conventional

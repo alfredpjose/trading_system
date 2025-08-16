@@ -2400,11 +2400,8 @@ def get_current_positions() -> List[Dict]:
         if os.getenv('USE_REAL_POSITIONS', 'false').lower() == 'true':
             return get_real_positions()
         else:
-            print("Real positions disabled in config")
+            print("📊 Real positions disabled in config")
             return []
-    except Exception as e:
-        print(f"Error getting real positions: {e}")
-        return []
     except Exception as e:
         print(f"⚠️ Error getting real positions: {e}")
         return []
@@ -2416,7 +2413,7 @@ def get_strategy_performance() -> List[Dict]:
     try:
         return get_strategy_performance()
     except Exception as e:
-        print(f"Error getting strategy performance: {e}")
+        print(f"⚠️ Error getting strategy performance: {e}")
         return []
 
 def get_market_data_summary() -> Dict:

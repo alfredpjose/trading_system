@@ -1,0 +1,166 @@
+commodities:
+  agriculture:
+    contract_params:
+      currency: USD
+      exchange: CBOT
+    symbols:
+    - ZC
+    - ZS
+    - ZW
+    - CT
+    - SB
+  energy:
+    contract_params:
+      currency: USD
+      exchange: NYMEX
+    symbols:
+    - CL
+    - NG
+    - HO
+    - RB
+  metals:
+    contract_params:
+      currency: USD
+      exchange: COMEX
+    symbols:
+    - GC
+    - SI
+    - HG
+    - PL
+crypto:
+  major_crypto:
+    contract_params:
+      exchange: PAXOS
+    symbols:
+    - BTC.USD
+    - ETH.USD
+    - LTC.USD
+    - BCH.USD
+forex:
+  major_pairs:
+    contract_params:
+      exchange: IDEALPRO
+    symbols:
+    - EUR.USD
+    - GBP.USD
+    - USD.JPY
+    - USD.CHF
+    - AUD.USD
+    - USD.CAD
+    - NZD.USD
+    trading_hours:
+      end: '17:00'
+      start: '17:00'
+      timezone: US/Eastern
+  minor_pairs:
+    contract_params:
+      exchange: IDEALPRO
+    symbols:
+    - EUR.GBP
+    - EUR.JPY
+    - GBP.JPY
+    - AUD.JPY
+    - EUR.CHF
+    - GBP.CHF
+futures:
+  bonds:
+    contract_params:
+      currency: USD
+      exchange: CBOT
+    symbols:
+    - ZB
+    - ZN
+    - ZF
+    - ZT
+  currencies:
+    contract_params:
+      currency: USD
+      exchange: CME
+    symbols:
+    - 6E
+    - 6B
+    - 6J
+    - 6S
+  indices:
+    contract_params:
+      currency: USD
+      exchange: CME
+    symbols:
+    - ES
+    - NQ
+    - RTY
+    - YM
+options:
+  equity_options:
+    contract_params:
+      exchange: SMART
+    strategies:
+    - covered_call
+    - protective_put
+    - iron_condor
+    symbols:
+    - AAPL
+    - MSFT
+    - SPY
+    - QQQ
+    - TSLA
+stocks:
+  international_stocks:
+    contract_params:
+      exchange: SMART
+    symbols:
+    - ASML
+    - SAP
+    - LVMH
+    - NESN
+    - TSM
+    - BABA
+    - TM
+    - SONY
+    - SHOP
+    - CNR
+    - RY
+  us_stocks:
+    contract_params:
+      currency: USD
+      exchange: SMART
+    exchanges:
+    - NYSE
+    - NASDAQ
+    - ARCA
+    symbols:
+    - AAPL
+    - MSFT
+    - GOOGL
+    - AMZN
+    - TSLA
+    - META
+    - NVDA
+    - NFLX
+    - JPM
+    - BAC
+    - WFC
+    - GS
+    - MS
+    - C
+    - JNJ
+    - PFE
+    - UNH
+    - ABBV
+    - BMY
+    - MRK
+    - KO
+    - PEP
+    - WMT
+    - HD
+    - MCD
+    - DIS
+    - SPY
+    - QQQ
+    - IWM
+    - VTI
+    - VOO
+    trading_hours:
+      end: '16:00'
+      start: 09:30
+      timezone: US/Eastern

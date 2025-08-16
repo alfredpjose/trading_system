@@ -2393,31 +2393,63 @@ def get_system_status() -> Dict[str, bool]:
     return status
 
 def get_current_positions() -> List[Dict]:
-    """Get current trading positions from IBKR paper account"""
-    from execution.position_manager import get_real_positions
-    
-    try:
-        if os.getenv('USE_REAL_POSITIONS', 'false').lower() == 'true':
-            return get_real_positions()
-        else:
-            print("Real positions disabled in config")
-            return []
-    except Exception as e:
-        print(f"Error getting real positions: {e}")
-        return []
-    except Exception as e:
-        print(f"⚠️ Error getting real positions: {e}")
-        return []
+    """Get current trading positions (mock data for demo)"""
+    # In a real system, this would read from your database or broker API
+    return [
+        {"symbol": "AAPL", "quantity": 100, "price": 175.50, "pnl": 250.00, "pnl_pct": 0.014},
+        {"symbol": "MSFT", "quantity": 50, "price": 380.25, "pnl": -125.50, "pnl_pct": -0.007},
+        {"symbol": "GOOGL", "quantity": 25, "price": 142.80, "pnl": 87.50, "pnl_pct": 0.025}
+    ]
 
 def get_strategy_performance() -> List[Dict]:
-    """Get actual strategy performance from trade database"""
-    from execution.position_manager import get_strategy_performance
+    """Get strategy performance data from actual trading system"""
+    # In real implementation, this would query the actual strategy performance
+    # from the trading system's strategy objects and trade history
     
+    strategies = []
+    
+    # Get enabled strategies from config
     try:
-        return get_strategy_performance()
+        from config import get_config
+        config = get_config()
+        
+        for name, strategy_config in config.strategies.items():
+            if strategy_config.enabled:
+                strategies.append({
+                    "name": name,
+                    "signals": 0,  # Would be populated from actual strategy
+                    "pnl": 0.00,   # Would be calculated from actual trades
+                    "win_rate": 0.00,  # Would be calculated from trade history
+                    "active": True,
+                    "status": "Running"
+                })
     except Exception as e:
-        print(f"Error getting strategy performance: {e}")
-        return []
+        print(f"⚠️ Could not get real strategy performance: {e}")
+    
+    return strategies
+
+def get_risk_metrics() -> Dict:
+    """Get current risk metrics (mock data for demo)"""
+    return {
+        "daily_pnl": 362.25,
+        "daily_pnl_pct": 0.0036,
+        "current_drawdown": 0.012,
+        "max_drawdown": 0.025,
+        "portfolio_heat": 0.08,
+        "max_heat": 0.10,
+        "open_positions": 3,
+        "max_positions": 5,
+        "circuit_breaker": False
+    }
+
+def get_recent_alerts(limit: int = 5) -> List[Dict]:
+    """Get recent system alerts (mock data for demo)"""
+    return [
+        {"time": "15:45:32", "level": "WARNING", "message": "High volatility detected in TSLA"},
+        {"time": "15:12:18", "level": "INFO", "message": "Strategy ma_crossover generated BUY signal"},
+        {"time": "14:58:07", "level": "INFO", "message": "Market data connection restored"},
+        {"time": "14:30:15", "level": "WARNING", "message": "Daily P&L approaching 3% threshold"}
+    ]
 
 def get_market_data_summary() -> Dict:
     """Get market data connection summary"""
