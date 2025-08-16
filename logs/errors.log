@@ -12,3 +12,14 @@
 2025-08-12 16:35:41 | ERROR    | __main__:554 - Configuration validation failed: Invalid YAML syntax in F:\trading_system\config\strategies.yaml: could not determine a constructor for the tag 'tag:yaml.org,2002:python/object/apply:numpy._core.multiarray.scalar'
   in "F:\trading_system\config\strategies.yaml", line 114, column 14
 2025-08-12 16:42:23 | ERROR    | __main__:204 - Failed to load strategy optimized_msft: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'
+2025-08-16 14:01:29 | ERROR    | __main__:204 - Failed to load strategy commodity_seasonality: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'
+2025-08-16 14:01:29 | ERROR    | __main__:204 - Failed to load strategy forex_carry_trade: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'
+2025-08-16 14:01:29 | ERROR    | __main__:204 - Failed to load strategy multi_market_momentum: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'
+2025-08-16 14:01:34 | ERROR    | execution.broker:51 - Broker connection failed: Failed to establish broker connection
+2025-08-16 14:01:34 | ERROR    | __main__:446 - System error: Broker connection failed: Failed to establish broker connection
+2025-08-16 14:48:13 | ERROR    | __main__:204 - Failed to load strategy commodity_seasonality: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'
+2025-08-16 14:48:13 | ERROR    | __main__:204 - Failed to load strategy forex_carry_trade: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'
+2025-08-16 14:48:13 | ERROR    | __main__:204 - Failed to load strategy multi_market_momentum: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'
+2025-08-16 14:56:07 | ERROR    | __main__:204 - Failed to load strategy commodity_seasonality: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'
+2025-08-16 14:56:07 | ERROR    | __main__:204 - Failed to load strategy forex_carry_trade: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'
+2025-08-16 14:56:07 | ERROR    | __main__:204 - Failed to load strategy multi_market_momentum: Can't instantiate abstract class BaseStrategy without an implementation for abstract method '_generate_signal'

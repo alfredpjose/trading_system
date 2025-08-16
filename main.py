@@ -8,7 +8,8 @@ import typer
 from loguru import logger
 import os
 from dotenv import load_dotenv
-
+import subprocess
+import socket
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta, time
@@ -37,6 +38,218 @@ from monitoring.alerts import AlertManager, AlertLevel
 from utils.logging import setup_logging
 
 app = typer.Typer()
+
+class RedisAutoStart:
+    """Auto-start Redis for trading system"""
+    
+    @staticmethod
+    def is_redis_running() -> bool:
+        """Check if Redis is accessible"""
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(2)
+            result = sock.connect_ex(('localhost', 6379))
+            sock.close()
+            return result == 0
+        except:
+            return False
+    
+    @staticmethod
+    def start_redis_docker() -> bool:
+        """Start Redis using Docker"""
+        try:
+            logger.info("🐳 Starting Redis Docker container...")
+            
+            # Check if container already exists
+            result = subprocess.run([
+                'docker', 'ps', '-a', '--filter', 'name=trading-redis',
+                '--format', '{{.Names}}'
+            ], capture_output=True, text=True)
+            
+            if 'trading-redis' in result.stdout:
+                # Start existing container
+                subprocess.run(['docker', 'start', 'trading-redis'], check=True)
+                logger.info("📦 Started existing Redis container")
+            else:
+                # Create new container
+                subprocess.run([
+                    'docker', 'run', '-d',
+                    '--name', 'trading-redis',
+                    '-p', '6379:6379',
+                    '--restart', 'unless-stopped',
+                    'redis:7-alpine'
+                ], check=True)
+                logger.info("🆕 Created new Redis container")
+            
+            # Wait for Redis to be ready
+            for i in range(15):
+                if RedisAutoStart.is_redis_running():
+                    logger.success(f"✅ Redis ready after {i+1} seconds")
+                    return True
+                time.sleep(1)
+            
+            return False
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to start Redis: {e}")
+            return False
+
+# 3. MODIFY your TradingSystem.__init__ method:
+# Replace this part in your TradingSystem class:
+
+    async def initialize(self):
+        """Initialize all system components"""
+        logger.info("Initializing trading system...")
+        
+        # NEW: Auto-start Redis if needed
+        await self._ensure_redis_running()
+        
+        # Setup monitoring first
+        await self._setup_monitoring()
+        
+        # Initialize data layer
+        if self.cache:
+            await self.cache.connect()
+        
+        if self.database:
+            await self.database.initialize()
+        
+        # ... rest of your existing code ...
+
+    async def _ensure_redis_running(self):
+        """Ensure Redis is available"""
+        if not self.redis_url:
+            logger.info("ℹ️ Redis not configured, skipping cache")
+            self.cache = DummyCache()
+            return
+        
+        # Check if Redis is already running
+        if RedisAutoStart.is_redis_running():
+            logger.info("✅ Redis is already running")
+            try:
+                self.cache = DataCache(self.redis_url, self.cache_ttl)
+                return
+            except Exception as e:
+                logger.warning(f"Redis connection failed: {e}")
+        
+        # Try to start Redis with Docker
+        logger.info("🚀 Starting Redis automatically...")
+        if RedisAutoStart.start_redis_docker():
+            try:
+                self.cache = DataCache(self.redis_url, self.cache_ttl)
+                logger.success("✅ Redis auto-started successfully")
+                return
+            except Exception as e:
+                logger.error(f"Redis connection failed after start: {e}")
+        
+        # Fallback to dummy cache
+        logger.warning("⚠️ Using dummy cache (no Redis)")
+        self.cache = DummyCache()
+
+# 4. ADD THIS COMMAND to your main.py CLI commands:
+@app.command()
+def setup_redis():
+    """Setup and test Redis for trading system"""
+    setup_logging("INFO")
+    
+    print("🐳 Redis Setup for Trading System")
+    print("=" * 40)
+    
+    # Check Docker
+    try:
+        result = subprocess.run(['docker', '--version'], capture_output=True, text=True)
+        if result.returncode == 0:
+            print("✅ Docker is available")
+            print(f"   Version: {result.stdout.strip()}")
+        else:
+            print("❌ Docker not found")
+            return
+    except:
+        print("❌ Docker not found or not accessible")
+        print("💡 Install Docker Desktop for Windows")
+        return
+    
+    # Check current Redis status
+    if RedisAutoStart.is_redis_running():
+        print("✅ Redis is already running")
+    else:
+        print("⚠️ Redis is not running")
+        
+        # Try to start Redis
+        if RedisAutoStart.start_redis_docker():
+            print("✅ Redis started successfully")
+        else:
+            print("❌ Failed to start Redis")
+            return
+    
+    # Test Redis connection
+    try:
+        import redis
+        r = redis.Redis(host='localhost', port=6379, decode_responses=True)
+        r.ping()
+        
+        # Test basic operations
+        r.set('test_key', 'test_value')
+        result = r.get('test_key')
+        r.delete('test_key')
+        
+        if result == 'test_value':
+            print("✅ Redis connection test passed")
+            print("🎉 Redis is ready for trading system!")
+        else:
+            print("❌ Redis test failed")
+            
+    except ImportError:
+        print("⚠️ Redis Python client not installed")
+        print("📦 Install with: pip install redis")
+    except Exception as e:
+        print(f"❌ Redis connection failed: {e}")
+
+@app.command()
+def redis_status():
+    """Check Redis status"""
+    setup_logging("INFO")
+    
+    print("📊 Redis Status Check")
+    print("=" * 30)
+    
+    # Check if Redis is running
+    if RedisAutoStart.is_redis_running():
+        print("✅ Redis is accessible on localhost:6379")
+        
+        # Try to get Redis info
+        try:
+            import redis
+            r = redis.Redis(host='localhost', port=6379, decode_responses=True)
+            info = r.info()
+            
+            print(f"📈 Redis Info:")
+            print(f"   Version: {info.get('redis_version', 'Unknown')}")
+            print(f"   Uptime: {info.get('uptime_in_seconds', 0)} seconds")
+            print(f"   Connected clients: {info.get('connected_clients', 0)}")
+            print(f"   Used memory: {info.get('used_memory_human', 'Unknown')}")
+            
+        except Exception as e:
+            print(f"⚠️ Could not get Redis info: {e}")
+    else:
+        print("❌ Redis is not accessible")
+        print("💡 Run: python main.py setup-redis")
+    
+    # Check Docker container status
+    try:
+        result = subprocess.run([
+            'docker', 'ps', '--filter', 'name=trading-redis',
+            '--format', 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
+        ], capture_output=True, text=True)
+        
+        if 'trading-redis' in result.stdout:
+            print(f"\n🐳 Docker Container:")
+            print(result.stdout)
+        else:
+            print("\n⚠️ No Redis Docker container found")
+            
+    except:
+        print("\n⚠️ Could not check Docker status")
 
 class TradingSystem:
     """Main trading system orchestrator"""
@@ -523,6 +736,45 @@ def status():
             logger.error(f"✗ Strategy loading failed: {e}")
 
     asyncio.run(check_connections())
+
+@app.command()
+def test_working_symbols():
+    """Test with only symbols that should work reliably"""
+    setup_logging("INFO")
+    
+    print("🧪 Testing with reliable symbols only")
+    working_symbols = get_working_symbols()
+    print(f"Testing symbols: {working_symbols}")
+    
+    async def test_data():
+        from data.providers import IBKRDataProvider
+        
+        host = os.getenv('IBKR_HOST', '127.0.0.1')
+        port = int(os.getenv('IBKR_PORT', '7497'))
+        client_id = int(os.getenv('IBKR_CLIENT_ID', '2000')) + 300
+        
+        provider = IBKRDataProvider(host, port, client_id, cache=None)
+        
+        try:
+            await provider.connect()
+            print("✅ Connected to IBKR")
+            
+            data_count = 0
+            async for data in provider.subscribe(working_symbols):
+                data_count += 1
+                print(f"📈 {data_count}: {data.symbol} = ${data.price:.4f}")
+                
+                if data_count >= 20:  # Stop after 20 updates
+                    break
+            
+            print(f"✅ Received {data_count} updates successfully")
+            
+        except Exception as e:
+            print(f"❌ Test failed: {e}")
+        finally:
+            await provider.disconnect()
+    
+    asyncio.run(test_data())
 
 @app.command()
 def validate_config(config_file: str = typer.Option("config.yaml", help="Configuration file")):
@@ -1105,6 +1357,18 @@ def fuzzy_logic_composite(mc: float, edge: float, risk: float, vol: float,
     composite = sum(weights[key] * scores[key] for key in weights.keys())
     
     return composite
+
+def get_working_symbols():
+    """Get list of symbols that should work reliably"""
+    return [
+        # US Stocks (these should always work)
+        'AAPL', 'MSFT', 'GOOGL', 'TSLA', 'SPY',
+        
+        # Major Forex (these usually work)
+        'EUR.USD', 'GBP.USD', 'USD.JPY', 'AUD.USD',
+        
+        # Skip complex futures/commodities for now to test basic functionality
+    ]
 
 def generate_recommendation(composite_score: float) -> str:
     """Generate trading recommendation based on composite score"""
@@ -3206,5 +3470,633 @@ def get_next_market_events(current_time) -> List[str]:
     
     return events
 
+@app.command()
+def discover_symbols():
+    """Discover all available symbols in IBKR across asset classes"""
+    setup_logging("INFO")
+    
+    print("🔍 IBKR Symbol Discovery")
+    print("=" * 50)
+    print("This will test 100+ symbols across:")
+    print("  • Stocks (US Large Cap, ETFs)")
+    print("  • Forex (Major & Cross Pairs)")
+    print("  • Futures (Indices, Bonds)")
+    print("  • Commodities (Metals, Energy, Agriculture)")
+    print("  • Crypto (BTC, ETH, LTC, BCH)")
+    
+    input("Press Enter to start discovery (will take 5-10 minutes)...")
+    
+    try:
+        # Run symbol discovery script
+        result = subprocess.run([
+            sys.executable, 'symbol_discovery.py'
+        ], capture_output=True, text=True)
+        
+        print(result.stdout)
+        if result.stderr:
+            print("Errors:", result.stderr)
+            
+        # Show summary of results
+        if os.path.exists('all_available_symbols.csv'):
+            df = pd.read_csv('all_available_symbols.csv')
+            print(f"\n📊 Discovery Summary:")
+            print(f"   Total available symbols: {len(df)}")
+            
+            by_class = df.groupby('asset_class').size()
+            for asset_class, count in by_class.items():
+                print(f"   {asset_class.capitalize()}: {count}")
+            
+            print(f"\n💾 Results saved to:")
+            print(f"   📄 all_available_symbols.csv")
+            print(f"   📄 symbol_discovery_results.json")
+        
+    except Exception as e:
+        print(f"❌ Discovery failed: {e}")
+
+@app.command()
+def download_historical_data(
+    symbols: str = typer.Option("AAPL,MSFT,SPY,QQQ,GOOGL", help="Comma-separated symbols"),
+    start_date: str = typer.Option("2020-01-01", help="Start date YYYY-MM-DD"),
+    end_date: str = typer.Option("2024-01-01", help="End date YYYY-MM-DD"),
+    interval: str = typer.Option("1d", help="Data interval: 1d, 1h, 5m, 1m")
+):
+    """Download historical data for backtesting"""
+    setup_logging("INFO")
+    
+    symbol_list = [s.strip().upper() for s in symbols.split(",")]
+    
+    print(f"📥 Downloading Historical Data")
+    print(f"Symbols: {symbol_list}")
+    print(f"Period: {start_date} to {end_date}")
+    print(f"Interval: {interval}")
+    print("=" * 50)
+    
+    from historical_backtest import HistoricalDataManager
+    
+    data_manager = HistoricalDataManager()
+    successful_downloads = 0
+    
+    for symbol in symbol_list:
+        data = data_manager.download_symbol_data(symbol, start_date, end_date, interval)
+        if data is not None:
+            successful_downloads += 1
+            print(f"✅ {symbol}: {len(data)} bars downloaded")
+        else:
+            print(f"❌ {symbol}: Download failed")
+        
+        time.sleep(0.5)  # Rate limiting
+    
+    print(f"\n📊 Download Summary:")
+    print(f"   Successful: {successful_downloads}/{len(symbol_list)}")
+    print(f"   Data saved to: historical_data/ folder")
+
+@app.command()
+def run_backtest(
+    symbols: str = typer.Option("AAPL,MSFT,SPY", help="Symbols to backtest"),
+    start_date: str = typer.Option("2020-01-01", help="Start date YYYY-MM-DD"),
+    end_date: str = typer.Option("2024-01-01", help="End date YYYY-MM-DD"),
+    strategies: str = typer.Option("all", help="Strategies: all, ma, rsi, bb"),
+    save_results: bool = typer.Option(True, help="Save detailed results")
+):
+    """Run comprehensive backtests with historical data"""
+    setup_logging("INFO")
+    
+    symbol_list = [s.strip().upper() for s in symbols.split(",")]
+    
+    print(f"🚀 Comprehensive Backtesting")
+    print(f"📊 Symbols: {symbol_list}")
+    print(f"📅 Period: {start_date} to {end_date}")
+    print(f"🎯 Strategies: {strategies}")
+    print("=" * 60)
+    
+    async def run_backtest_async():
+        from historical_backtest import BacktestRunner
+        
+        runner = BacktestRunner()
+        results = await runner.run_comprehensive_backtest(
+            symbols=symbol_list,
+            start_date=start_date,
+            end_date=end_date
+        )
+        
+        return results
+    
+    try:
+        results = asyncio.run(run_backtest_async())
+        
+        print(f"\n🎉 Backtesting completed!")
+        print(f"📊 Tested {len(results)} symbols")
+        print(f"💾 Results saved to backtest_results_*.json")
+        
+        return results
+        
+    except Exception as e:
+        print(f"❌ Backtesting failed: {e}")
+
+@app.command()
+def analyze_backtest_results(
+    min_return: float = typer.Option(10.0, help="Minimum return %"),
+    min_sharpe: float = typer.Option(1.0, help="Minimum Sharpe ratio"),
+    max_drawdown: float = typer.Option(20.0, help="Maximum drawdown %"),
+    top_n: int = typer.Option(20, help="Show top N results")
+):
+    """Analyze backtest results and find best performers"""
+    setup_logging("INFO")
+    
+    print(f"🔍 Analyzing Backtest Results")
+    print(f"Criteria: Return ≥{min_return}%, Sharpe ≥{min_sharpe}, MaxDD ≤{max_drawdown}%")
+    print("=" * 60)
+    
+    # Find most recent backtest results
+    result_files = glob.glob("backtest_summary_*.csv")
+    
+    if not result_files:
+        print("❌ No backtest results found.")
+        print("💡 Run: python main.py run-backtest first")
+        return
+    
+    # Use most recent file
+    latest_file = max(result_files, key=os.path.getctime)
+    print(f"📄 Using: {latest_file}")
+    
+    try:
+        df = pd.read_csv(latest_file)
+        
+        # Apply filters
+        filtered = df[
+            (df['total_return_pct'] >= min_return) &
+            (df['sharpe_ratio'] >= min_sharpe) &
+            (df['max_drawdown_pct'] <= max_drawdown)
+        ]
+        
+        if filtered.empty:
+            print(f"❌ No symbols meet all criteria")
+            print(f"\n📊 Summary of all results:")
+            print(f"   Best return: {df['total_return_pct'].max():.1f}%")
+            print(f"   Best Sharpe: {df['sharpe_ratio'].max():.2f}")
+            print(f"   Min drawdown: {df['max_drawdown_pct'].min():.1f}%")
+            return
+        
+        # Sort by return
+        best = filtered.sort_values('total_return_pct', ascending=False).head(top_n)
+        
+        print(f"\n🏆 Top {len(best)} Performers:")
+        print(f"{'Rank':<5} {'Symbol':<8} {'Strategy':<20} {'Return':<10} {'Sharpe':<8} {'MaxDD':<8} {'Trades':<8}")
+        print("-" * 75)
+        
+        for i, (_, row) in enumerate(best.iterrows(), 1):
+            print(f"{i:<5} {row['symbol']:<8} {row['strategy']:<20} "
+                  f"{row['total_return_pct']:>8.1f}% {row['sharpe_ratio']:>6.2f} "
+                  f"{row['max_drawdown_pct']:>6.1f}% {row['total_trades']:>6.0f}")
+        
+        # Strategy analysis
+        print(f"\n📊 Strategy Performance:")
+        strategy_stats = filtered.groupby('strategy').agg({
+            'total_return_pct': 'mean',
+            'sharpe_ratio': 'mean',
+            'win_rate': 'mean',
+            'total_trades': 'mean'
+        }).round(2)
+        
+        for strategy, stats in strategy_stats.iterrows():
+            print(f"   {strategy:<20}: Avg Return {stats['total_return_pct']:>6.1f}%, "
+                  f"Sharpe {stats['sharpe_ratio']:>5.2f}, Win Rate {stats['win_rate']*100:>5.1f}%")
+        
+        # Save filtered results
+        output_file = f"best_performers_{min_return}ret_{min_sharpe}sharpe.csv"
+        best.to_csv(output_file, index=False)
+        print(f"\n💾 Top performers saved to: {output_file}")
+        
+        # Best symbols for live trading
+        print(f"\n🎯 Recommended for Live Trading:")
+        top_symbols = best.groupby('symbol')['total_return_pct'].max().sort_values(ascending=False).head(5)
+        for symbol, return_pct in top_symbols.items():
+            best_strategy = best[best['symbol'] == symbol].iloc[0]['strategy']
+            print(f"   {symbol}: {return_pct:.1f}% ({best_strategy})")
+        
+    except Exception as e:
+        print(f"❌ Analysis failed: {e}")
+
+@app.command()
+def quick_backtest(
+    symbol: str = typer.Option("AAPL", help="Single symbol to test"),
+    strategy: str = typer.Option("ma", help="Strategy: ma, rsi, bb"),
+    period: str = typer.Option("2y", help="Period: 1y, 2y, 3y, 5y")
+):
+    """Quick backtest for a single symbol and strategy"""
+    setup_logging("INFO")
+    
+    print(f"⚡ Quick Backtest: {symbol} with {strategy} strategy")
+    
+    # Convert period to dates
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    if period == "1y":
+        start_date = (datetime.now() - timedelta(days=365)).strftime("%Y-%m-%d")
+    elif period == "2y":
+        start_date = (datetime.now() - timedelta(days=730)).strftime("%Y-%m-%d")
+    elif period == "3y":
+        start_date = (datetime.now() - timedelta(days=1095)).strftime("%Y-%m-%d")
+    elif period == "5y":
+        start_date = (datetime.now() - timedelta(days=1825)).strftime("%Y-%m-%d")
+    else:
+        start_date = "2022-01-01"
+    
+    async def quick_test():
+        from historical_backtest import BacktestRunner
+        
+        runner = BacktestRunner()
+        
+        # Download data
+        data = await runner._get_historical_data(symbol, start_date, end_date)
+        if data is None:
+            print(f"❌ Could not get data for {symbol}")
+            return
+        
+        print(f"📊 Data: {len(data)} bars from {start_date} to {end_date}")
+        
+        # Run specific strategy
+        if strategy == "ma":
+            result = runner.backtester.backtest_moving_average_strategy(data, symbol=symbol)
+        elif strategy == "rsi":
+            result = runner.backtester.backtest_rsi_strategy(data, symbol=symbol)
+        elif strategy == "bb":
+            result = runner.backtester.backtest_bollinger_bands(data, symbol=symbol)
+        else:
+            print(f"❌ Unknown strategy: {strategy}")
+            return
+        
+        # Print results
+        metrics = result['metrics']
+        print(f"\n📈 Results for {symbol} ({strategy}):")
+        print(f"   Total Return: {metrics['total_return_pct']:.1f}%")
+        print(f"   Sharpe Ratio: {metrics['sharpe_ratio']:.2f}")
+        print(f"   Max Drawdown: {metrics['max_drawdown_pct']:.1f}%")
+        print(f"   Total Trades: {metrics['total_trades']}")
+        print(f"   Win Rate: {metrics['win_rate']*100:.1f}%")
+        print(f"   Best Trade: {metrics['best_trade']*100:.1f}%")
+        print(f"   Worst Trade: {metrics['worst_trade']*100:.1f}%")
+        
+        return result
+    
+    try:
+        result = asyncio.run(quick_test())
+        if result:
+            print(f"✅ Quick backtest completed!")
+    except Exception as e:
+        print(f"❌ Quick backtest failed: {e}")
+
+@app.command()
+def backtest_portfolio(
+    config_file: str = typer.Option("portfolio_config.json", help="Portfolio configuration file"),
+    start_date: str = typer.Option("2020-01-01", help="Start date"),
+    end_date: str = typer.Option("2024-01-01", help="End date"),
+    initial_capital: float = typer.Option(100000, help="Initial capital")
+):
+    """Backtest a complete portfolio with multiple symbols and strategies"""
+    setup_logging("INFO")
+    
+    print(f"🗂️ Portfolio Backtesting")
+    print(f"💰 Initial Capital: ${initial_capital:,.2f}")
+    print("=" * 50)
+    
+    # Create default portfolio config if it doesn't exist
+    if not os.path.exists(config_file):
+        default_portfolio = {
+            "portfolio_name": "Diversified Growth",
+            "rebalance_frequency": "monthly",
+            "positions": [
+                {"symbol": "AAPL", "strategy": "moving_average", "allocation": 0.20},
+                {"symbol": "MSFT", "strategy": "moving_average", "allocation": 0.20},
+                {"symbol": "SPY", "strategy": "bollinger_bands", "allocation": 0.30},
+                {"symbol": "QQQ", "strategy": "rsi_mean_reversion", "allocation": 0.15},
+                {"symbol": "GLD", "strategy": "moving_average", "allocation": 0.15}
+            ]
+        }
+        
+        with open(config_file, 'w') as f:
+            json.dump(default_portfolio, f, indent=2)
+        
+        print(f"📄 Created default portfolio config: {config_file}")
+    
+    try:
+        with open(config_file, 'r') as f:
+            portfolio_config = json.load(f)
+        
+        print(f"📊 Portfolio: {portfolio_config['portfolio_name']}")
+        print(f"📈 Positions:")
+        
+        total_allocation = 0
+        for position in portfolio_config['positions']:
+            allocation_pct = position['allocation'] * 100
+            capital_allocated = initial_capital * position['allocation']
+            print(f"   {position['symbol']:<6}: {allocation_pct:>5.1f}% (${capital_allocated:>8,.0f}) - {position['strategy']}")
+            total_allocation += position['allocation']
+        
+        if abs(total_allocation - 1.0) > 0.01:
+            print(f"⚠️ Warning: Total allocation is {total_allocation:.1%}, should be 100%")
+        
+        # Run portfolio backtest
+        async def run_portfolio_backtest():
+            from historical_backtest import BacktestRunner
+            
+            runner = BacktestRunner()
+            portfolio_results = {}
+            
+            print(f"\n🚀 Running portfolio backtest...")
+            
+            for position in portfolio_config['positions']:
+                symbol = position['symbol']
+                strategy = position['strategy']
+                allocation = position['allocation']
+                
+                print(f"📈 Testing {symbol} with {strategy}...")
+                
+                # Get data
+                data = await runner._get_historical_data(symbol, start_date, end_date)
+                if data is None:
+                    print(f"❌ No data for {symbol}")
+                    continue
+                
+                # Run strategy
+                if strategy == "moving_average":
+                    result = runner.backtester.backtest_moving_average_strategy(data, symbol=symbol)
+                elif strategy == "rsi_mean_reversion":
+                    result = runner.backtester.backtest_rsi_strategy(data, symbol=symbol)
+                elif strategy == "bollinger_bands":
+                    result = runner.backtester.backtest_bollinger_bands(data, symbol=symbol)
+                else:
+                    print(f"❌ Unknown strategy: {strategy}")
+                    continue
+                
+                # Apply allocation
+                result['allocation'] = allocation
+                result['allocated_capital'] = initial_capital * allocation
+                portfolio_results[symbol] = result
+            
+            return portfolio_results
+        
+        results = asyncio.run(run_portfolio_backtest())
+        
+        # Calculate portfolio metrics
+        print(f"\n📊 Portfolio Results:")
+        print("-" * 60)
+        
+        total_portfolio_return = 0
+        weighted_sharpe = 0
+        total_trades = 0
+        
+        for symbol, result in results.items():
+            metrics = result['metrics']
+            allocation = result['allocation']
+            
+            weighted_return = metrics['total_return_pct'] * allocation
+            total_portfolio_return += weighted_return
+            weighted_sharpe += metrics['sharpe_ratio'] * allocation
+            total_trades += metrics['total_trades']
+            
+            print(f"{symbol:<6}: {metrics['total_return_pct']:>6.1f}% × {allocation:.1%} = {weighted_return:>6.1f}% contribution")
+        
+        print("-" * 60)
+        print(f"Portfolio Return: {total_portfolio_return:.1f}%")
+        print(f"Weighted Sharpe:  {weighted_sharpe:.2f}")
+        print(f"Total Trades:     {total_trades}")
+        
+        # Save portfolio results
+        portfolio_summary = {
+            'portfolio_config': portfolio_config,
+            'backtest_period': {'start': start_date, 'end': end_date},
+            'initial_capital': initial_capital,
+            'portfolio_metrics': {
+                'total_return_pct': total_portfolio_return,
+                'weighted_sharpe': weighted_sharpe,
+                'total_trades': total_trades
+            },
+            'individual_results': results
+        }
+        
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        portfolio_file = f"portfolio_backtest_{timestamp}.json"
+        
+        with open(portfolio_file, 'w') as f:
+            json.dump(portfolio_summary, f, indent=2, default=str)
+        
+        print(f"\n💾 Portfolio results saved to: {portfolio_file}")
+        
+    except Exception as e:
+        print(f"❌ Portfolio backtest failed: {e}")
+
+@app.command()
+def compare_strategies(
+    symbol: str = typer.Option("AAPL", help="Symbol to analyze"),
+    period: str = typer.Option("2y", help="Time period: 1y, 2y, 3y, 5y"),
+    show_details: bool = typer.Option(True, help="Show detailed metrics")
+):
+    """Compare all strategies on a single symbol"""
+    setup_logging("INFO")
+    
+    print(f"⚔️ Strategy Comparison for {symbol}")
+    print("=" * 50)
+    
+    # Convert period to dates
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    days_map = {"1y": 365, "2y": 730, "3y": 1095, "5y": 1825}
+    days_back = days_map.get(period, 730)
+    start_date = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
+    
+    async def compare_all_strategies():
+        from historical_backtest import BacktestRunner
+        
+        runner = BacktestRunner()
+        
+        # Get data
+        data = await runner._get_historical_data(symbol, start_date, end_date)
+        if data is None:
+            print(f"❌ Could not get data for {symbol}")
+            return
+        
+        print(f"📊 Data: {len(data)} bars from {start_date} to {end_date}")
+        
+        # Test all strategies
+        strategies = {
+            'Moving Average': runner.backtester.backtest_moving_average_strategy(data, symbol=symbol),
+            'RSI Mean Reversion': runner.backtester.backtest_rsi_strategy(data, symbol=symbol),
+            'Bollinger Bands': runner.backtester.backtest_bollinger_bands(data, symbol=symbol)
+        }
+        
+        # Compare results
+        print(f"\n📈 Strategy Comparison Results:")
+        print(f"{'Strategy':<20} {'Return':<10} {'Sharpe':<8} {'MaxDD':<8} {'Trades':<8} {'Win%':<8}")
+        print("-" * 70)
+        
+        best_return = -float('inf')
+        best_strategy = ""
+        
+        for name, result in strategies.items():
+            metrics = result['metrics']
+            
+            if metrics['total_return_pct'] > best_return:
+                best_return = metrics['total_return_pct']
+                best_strategy = name
+            
+            print(f"{name:<20} {metrics['total_return_pct']:>8.1f}% "
+                  f"{metrics['sharpe_ratio']:>6.2f} {metrics['max_drawdown_pct']:>6.1f}% "
+                  f"{metrics['total_trades']:>6.0f} {metrics['win_rate']*100:>6.1f}%")
+        
+        print(f"\n🏆 Best Strategy: {best_strategy} ({best_return:.1f}% return)")
+        
+        if show_details:
+            print(f"\n📊 Detailed Metrics for {best_strategy}:")
+            best_metrics = strategies[best_strategy]['metrics']
+            
+            print(f"   Profit Factor: {best_metrics['profit_factor']:.2f}")
+            print(f"   Avg Trade Return: {best_metrics['avg_trade_return_pct']:.2f}%")
+            print(f"   Best Trade: {best_metrics['best_trade']*100:.1f}%")
+            print(f"   Worst Trade: {best_metrics['worst_trade']*100:.1f}%")
+            print(f"   Avg Days Held: {best_metrics['avg_days_held']:.1f}")
+        
+        return strategies
+    
+    try:
+        results = asyncio.run(compare_all_strategies())
+        print(f"✅ Strategy comparison completed!")
+    except Exception as e:
+        print(f"❌ Strategy comparison failed: {e}")
+
+@app.command()
+def market_regime_analysis(
+    symbols: str = typer.Option("SPY,QQQ,IWM", help="Market symbols to analyze"),
+    lookback_years: int = typer.Option(3, help="Years of data to analyze")
+):
+    """Analyze market regimes and strategy performance"""
+    setup_logging("INFO")
+    
+    symbol_list = [s.strip().upper() for s in symbols.split(",")]
+    
+    print(f"📊 Market Regime Analysis")
+    print(f"📈 Symbols: {symbol_list}")
+    print(f"📅 Lookback: {lookback_years} years")
+    print("=" * 50)
+    
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=lookback_years*365)).strftime("%Y-%m-%d")
+    
+    async def analyze_regimes():
+        from historical_backtest import HistoricalDataManager
+        
+        data_manager = HistoricalDataManager()
+        regime_analysis = {}
+        
+        for symbol in symbol_list:
+            print(f"\n📈 Analyzing {symbol}...")
+            
+            data = data_manager.download_symbol_data(symbol, start_date, end_date)
+            if data is None:
+                continue
+            
+            # Calculate regime indicators
+            data['returns'] = data['close'].pct_change()
+            data['volatility'] = data['returns'].rolling(30).std() * np.sqrt(252)
+            data['sma_50'] = data['close'].rolling(50).mean()
+            data['sma_200'] = data['close'].rolling(200).mean()
+            
+            # Define regimes
+            bull_market = data['close'] > data['sma_200']
+            bear_market = data['close'] < data['sma_200']
+            high_vol = data['volatility'] > data['volatility'].quantile(0.75)
+            low_vol = data['volatility'] < data['volatility'].quantile(0.25)
+            
+            regimes = {
+                'Bull + Low Vol': bull_market & low_vol,
+                'Bull + High Vol': bull_market & high_vol,
+                'Bear + Low Vol': bear_market & low_vol,
+                'Bear + High Vol': bear_market & high_vol
+            }
+            
+            regime_stats = {}
+            for regime_name, regime_mask in regimes.items():
+                if regime_mask.sum() > 0:
+                    regime_returns = data.loc[regime_mask, 'returns']
+                    regime_stats[regime_name] = {
+                        'days': regime_mask.sum(),
+                        'avg_return': regime_returns.mean() * 252,  # Annualized
+                        'volatility': regime_returns.std() * np.sqrt(252),
+                        'sharpe': (regime_returns.mean() / regime_returns.std() * np.sqrt(252)) if regime_returns.std() > 0 else 0
+                    }
+            
+            regime_analysis[symbol] = regime_stats
+        
+        return regime_analysis
+    
+    try:
+        analysis = asyncio.run(analyze_regimes())
+        
+        print(f"\n📊 Market Regime Analysis Results:")
+        print("=" * 80)
+        
+        for symbol, regimes in analysis.items():
+            print(f"\n📈 {symbol}:")
+            print(f"{'Regime':<18} {'Days':<8} {'Ann.Return':<12} {'Volatility':<12} {'Sharpe':<8}")
+            print("-" * 60)
+            
+            for regime_name, stats in regimes.items():
+                print(f"{regime_name:<18} {stats['days']:<8.0f} "
+                      f"{stats['avg_return']*100:>10.1f}% {stats['volatility']*100:>10.1f}% "
+                      f"{stats['sharpe']:>6.2f}")
+        
+        print(f"\n💡 Strategy Insights:")
+        print("   • Bull + Low Vol: Best for momentum strategies")
+        print("   • Bull + High Vol: Good for breakout strategies")
+        print("   • Bear + Low Vol: Suitable for mean reversion")
+        print("   • Bear + High Vol: Risk management critical")
+        
+    except Exception as e:
+        print(f"❌ Market regime analysis failed: {e}")
+
+# Also add this helper command:
+@app.command()
+def list_backtest_files():
+    """List all available backtest result files"""
+    setup_logging("INFO")
+    
+    print("📁 Available Backtest Files:")
+    print("=" * 40)
+    
+    # JSON result files
+    json_files = glob.glob("backtest_results_*.json")
+    if json_files:
+        print("\n📊 Detailed Results (JSON):")
+        for file in sorted(json_files, key=os.path.getctime, reverse=True):
+            size = os.path.getsize(file) / 1024  # KB
+            mtime = datetime.fromtimestamp(os.path.getctime(file))
+            print(f"   {file} ({size:.1f}KB, {mtime.strftime('%Y-%m-%d %H:%M')})")
+    
+    # CSV summary files
+    csv_files = glob.glob("backtest_summary_*.csv")
+    if csv_files:
+        print("\n📈 Summary Results (CSV):")
+        for file in sorted(csv_files, key=os.path.getctime, reverse=True):
+            try:
+                df = pd.read_csv(file)
+                symbols = df['symbol'].nunique()
+                strategies = df['strategy'].nunique()
+                mtime = datetime.fromtimestamp(os.path.getctime(file))
+                print(f"   {file} ({symbols} symbols, {strategies} strategies, {mtime.strftime('%Y-%m-%d %H:%M')})")
+            except:
+                print(f"   {file} (corrupted or invalid)")
+    
+    # Portfolio files
+    portfolio_files = glob.glob("portfolio_backtest_*.json")
+    if portfolio_files:
+        print("\n🗂️ Portfolio Results:")
+        for file in sorted(portfolio_files, key=os.path.getctime, reverse=True):
+            mtime = datetime.fromtimestamp(os.path.getctime(file))
+            print(f"   {file} ({mtime.strftime('%Y-%m-%d %H:%M')})")
+    
+    if not json_files and not csv_files and not portfolio_files:
+        print("❌ No backtest files found               ")
+        print("💡 Run: python main.py run-backtest to generate results")
+
+
 if __name__ == "__main__":
     app()
+

@@ -138,31 +138,32 @@ class IBKRDataProvider(EWrapper, EClient, IDataProvider):
             logger.debug(f"String data: {symbol} type {tickType} = {value}")
     
     async def subscribe(self, symbols: List[str]) -> AsyncGenerator[MarketData, None]:
-        """Subscribe to real-time market data"""
+        """Subscribe to real-time market data with proper contract handling"""
         if not self._connected:
             await self.connect()
         
-        # Subscribe to each symbol
+        # Subscribe to each symbol with proper contract
         for symbol in symbols:
-            contract = Contract()
-            contract.symbol = symbol
-            contract.secType = "STK"
-            contract.exchange = "SMART"
-            contract.currency = "USD"
-            
-            req_id = self._req_id_counter
-            self._req_id_counter += 1
-            self._subscriptions[req_id] = symbol
-            
-            # Subscribe in executor to avoid blocking
-            await asyncio.get_event_loop().run_in_executor(
-                None,
-                self.reqMktData,
-                req_id, contract, "", False, False, []
-            )
-            
-            logger.info(f"Subscribed to {symbol} (req_id: {req_id})")
-            await asyncio.sleep(0.1)  # Rate limit subscriptions
+            try:
+                contract = self._create_contract_for_symbol(symbol)
+                
+                req_id = self._req_id_counter
+                self._req_id_counter += 1
+                self._subscriptions[req_id] = symbol
+                
+                # Subscribe in executor to avoid blocking
+                await asyncio.get_event_loop().run_in_executor(
+                    None,
+                    self.reqMktData,
+                    req_id, contract, "", False, False, []
+                )
+                
+                logger.info(f"Subscribed to {symbol} (req_id: {req_id})")
+                await asyncio.sleep(0.2)  # Longer delay for stability
+                
+            except Exception as e:
+                logger.error(f"Failed to subscribe to {symbol}: {e}")
+                continue
         
         # Start periodic status logging
         asyncio.create_task(self._log_data_status())
@@ -170,15 +171,100 @@ class IBKRDataProvider(EWrapper, EClient, IDataProvider):
         # Yield data as it arrives
         while True:
             try:
-                data = await asyncio.wait_for(self._data_queue.get(), timeout=5.0)
+                data = await asyncio.wait_for(self._data_queue.get(), timeout=10.0)
                 yield data
             except asyncio.TimeoutError:
-                # Log status every 5 seconds when no data
-                logger.debug(f"No market data received in last 5 seconds. Total updates: {self._price_updates_received}")
+                # Log status every 10 seconds when no data
+                logger.debug(f"No market data received in last 10 seconds. Total updates: {self._price_updates_received}")
                 continue
             except Exception as e:
                 logger.error(f"Error in data subscription: {e}")
                 break
+
+    def _create_contract_for_symbol(self, symbol: str) -> Contract:
+        """Create appropriate contract based on symbol"""
+        contract = Contract()
+        
+        # Detect symbol type and create appropriate contract
+        if self._is_forex_symbol(symbol):
+            # Forex: EUR.USD, GBP.USD, etc.
+            base, quote = symbol.split('.')
+            contract.symbol = base
+            contract.secType = "CASH"
+            contract.currency = quote
+            contract.exchange = "IDEALPRO"
+            
+        elif self._is_futures_symbol(symbol):
+            # Futures: ES, NQ, ZC, ZS, etc.
+            contract.symbol = symbol
+            contract.secType = "FUT"
+            contract.currency = "USD"
+            contract.exchange = self._get_futures_exchange(symbol)
+            # Add contract month for futures
+            contract.lastTradeDateOrContractMonth = self._get_front_month()
+            
+        elif self._is_commodity_symbol(symbol):
+            # Commodities: GC, CL, NG
+            contract.symbol = symbol
+            contract.secType = "FUT"
+            contract.currency = "USD"
+            contract.exchange = self._get_commodity_exchange(symbol)
+            contract.lastTradeDateOrContractMonth = self._get_front_month()
+            
+        else:
+            # Default to stocks
+            contract.symbol = symbol
+            contract.secType = "STK"
+            contract.exchange = "SMART"
+            contract.currency = "USD"
+        
+        return contract
+
+    def _is_forex_symbol(self, symbol: str) -> bool:
+        """Check if symbol is forex"""
+        return '.' in symbol and len(symbol) == 7  # EUR.USD format
+
+    def _is_futures_symbol(self, symbol: str) -> bool:
+        """Check if symbol is futures"""
+        futures_symbols = ['ES', 'NQ', 'RTY', 'YM', 'ZB', 'ZN', 'ZF', 'ZT']
+        return symbol in futures_symbols
+
+    def _is_commodity_symbol(self, symbol: str) -> bool:
+        """Check if symbol is commodity"""
+        commodity_symbols = ['GC', 'SI', 'CL', 'NG', 'HG', 'ZC', 'ZS', 'ZW', 'CT', 'SB']
+        return symbol in commodity_symbols
+
+    def _get_futures_exchange(self, symbol: str) -> str:
+        """Get exchange for futures symbol"""
+        exchanges = {
+            'ES': 'CME', 'NQ': 'CME', 'RTY': 'CME', 'YM': 'CBOT',
+            'ZB': 'CBOT', 'ZN': 'CBOT', 'ZF': 'CBOT', 'ZT': 'CBOT'
+        }
+        return exchanges.get(symbol, 'CME')
+
+    def _get_commodity_exchange(self, symbol: str) -> str:
+        """Get exchange for commodity symbol"""
+        exchanges = {
+            'GC': 'COMEX', 'SI': 'COMEX', 'HG': 'COMEX',
+            'CL': 'NYMEX', 'NG': 'NYMEX', 'HO': 'NYMEX', 'RB': 'NYMEX',
+            'ZC': 'CBOT', 'ZS': 'CBOT', 'ZW': 'CBOT', 'CT': 'ICE', 'SB': 'ICE'
+        }
+        return exchanges.get(symbol, 'NYMEX')
+
+    def _get_front_month(self) -> str:
+        """Get front month contract for futures/commodities"""
+        from datetime import datetime, timedelta
+        
+        now = datetime.now()
+        # Simple logic: use next month
+        if now.month == 12:
+            year = now.year + 1
+            month = 1
+        else:
+            year = now.year
+            month = now.month + 1
+        
+        return f"{year}{month:02d}"
     
     async def _log_data_status(self):
         """Periodically log data reception status"""
